@@ -8,7 +8,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # setup posgres database
-conn = psycopg2.connect(host='localhost', dbname='frogfessions', user='postgres', password='PostgreSQL1', port=5432)
+conn = psycopg2.connect(host='db.bmtkipurpixoqdexanbj.supabase.co', dbname='postgres', user='postgres', password='creatorNudging', port=5432)
 cur = conn.cursor()
 
 # create user table
@@ -30,7 +30,6 @@ cur.execute("""CREATE TABLE IF NOT EXISTS topics (
 # create posts table
 cur.execute("""CREATE TABLE IF NOT EXISTS posts (
         post_id TEXT PRIMARY KEY,
-        title TEXT,
         content TEXT,
         topic TEXT REFERENCES topics(topic),
         post_date TIMESTAMP,
@@ -63,26 +62,26 @@ def index():
     return "Landing Page"
 
 
-@app.route('/newUser', methods=['POST'])
-def newUser():
+@app.route('/connect', methods=['POST'])
+def connect():
     user_wallet_address = request.form.get('user_wallet_address')
 
-    cur.execute("""INSERT INTO users (user_wallet_address) VALUES (%s);""",
+    cur.execute("""INSERT INTO users (user_wallet_address) VALUES (%s) ON CONFLICT (user_wallet_address) DO NOTHING;""",
                 (user_wallet_address,))
     
-    #cur.execute("""SELECT * FROM users WHERE user_wallet_address = %s;""", (user_wallet_address,))
-    cur.execute("""SELECT user_wallet_address FROM users WHERE user_wallet_address = %s;
+    cur.execute("""SELECT * FROM users WHERE user_wallet_address = %s;
     """, (user_wallet_address,))
-    new_user = cur.fetchone()
+    current_user = cur.fetchone()
 
     conn.commit()
 
-    if new_user:
+    if current_user:
+
         user_dict = {
-            'user_wallet_address': new_user[0],
-            'posts':[],
-            'comments':[],
-            'likes':[]
+            'user_wallet_address': current_user[0],
+            'posts': current_user[1],
+            'comments':current_user[2],
+            'likes':current_user[3]
         }
         return jsonify(user_dict)
     else:
@@ -101,14 +100,13 @@ def newTopic():
 @app.route('/createPost', methods=['POST'])
 def createPost():
     post_id = str(uuid.uuid4())
-    title = request.form.get('title')
     content = request.form.get('content')
     topic = request.form.get('topic')
     post_date = datetime.now()
     user_wallet_address = request.form.get('user_wallet_address')
 
-    cur.execute("""INSERT INTO posts (post_id, title, content, topic, post_date, user_wallet_address) VALUES (%s, %s, %s, %s, %s, %s);""", 
-                (post_id, title, content, topic, post_date, user_wallet_address))
+    cur.execute("""INSERT INTO posts (post_id, content, topic, post_date, user_wallet_address) VALUES (%s, %s, %s, %s, %s);""", 
+                (post_id, content, topic, post_date, user_wallet_address))
     
     cur.execute("""UPDATE users SET posts = array_append(posts, %s) WHERE user_wallet_address = %s""",
                 (post_id, user_wallet_address))
@@ -120,11 +118,10 @@ def createPost():
 
     post_dict = {
         'post_id': new_post[0],
-		'title': new_post[1],
-		'content': new_post[2],
-		'topic': new_post[3],
-		'post_date': new_post[4],
-		'user_wallet_address': new_post[5]}
+		'content': new_post[1],
+		'topic': new_post[2],
+		'post_date': new_post[3],
+		'user_wallet_address': new_post[4]}
     
     return jsonify(post_dict)
 
@@ -132,10 +129,24 @@ def createPost():
 @app.route('/likePost', methods=['POST'])
 def likePost():
     post_id_to_like = request.form.get('post_id')  # Assuming you have a hidden input field in the form containing the post_id
+    user_wallet_address = request.form.get('user_wallet_address')
 
-    if post_id_to_like: #verify that the post exists in the database
+    cur.execute("""SELECT * FROM likes 
+        WHERE user_wallet_address = %s AND post_id = %s;
+    """, (user_wallet_address, post_id_to_like))
+    existing_like = cur.fetchone()
+
+    if existing_like:
+        like_dict = {
+             'like_id': existing_like[0],
+             'user_wallet_address': existing_like[1],
+             'post_id': existing_like[2]
+        }
+        return jsonify(like_dict)
+    
+    elif post_id_to_like: #verify that the post exists in the database
         like_id = str(uuid.uuid4())
-        user_wallet_address = request.form.get('user_wallet_address')
+        
 
         cur.execute("""INSERT INTO likes (like_id, user_wallet_address, post_id) 
                         VALUES (%s, %s, %s);""",
@@ -163,8 +174,8 @@ def likePost():
 def createComment():
     comment_id = str(uuid.uuid4())
     comment = request.form.get('comment')
-    comment_date= datetime.now(),
-    user_wallet_address = request.form.get('user_wallet_address'),
+    comment_date= datetime.now()
+    user_wallet_address = request.form.get('user_wallet_address')
     post_id = request.form.get('post_id')
 
     cur.execute("""INSERT INTO comments (comment_id, comment, comment_date, user_wallet_address, post_id) VALUES (%s, %s, %s, %s, %s);""", 
@@ -190,15 +201,53 @@ def createComment():
     return jsonify(comment_dict)
 
 
-@app.route('/feed', methods = ['GET'])
+@app.route('/feed', methods = ['POST'])
 def feed(): 
+    user_wallet_address = request.form.get('user_wallet_address')
+    feed = []
+
+    user_recent_posts = []
+    cur.execute("""SELECT * FROM posts WHERE user_wallet_address = %s ORDER BY post_date DESC LIMIT 3;""", (user_wallet_address,))
+    user_posts = cur.fetchall()
+
+    for post in user_posts:
+        comment_lst = []
+        comment_id_list = post[5]
+        
+        for comment_id in reversed(comment_id_list):
+            cur.execute("""SELECT * FROM comments WHERE comment_id = %s;""", (comment_id,))
+            comment = cur.fetchone()    
+
+            comment_dict = {
+                'comment_id': comment[0],
+                'comment': comment[1],
+                'comment_date': comment[2],
+                'user_wallet_address': comment[3],
+                'post_id': comment[4]
+            }
+            comment_lst.append(comment_dict)
+
+        post_dict = {
+            'post_id': post [0], 
+            'content': post[1],
+            'topic': post[2],
+            'post_date': post[3],
+            'user_wallet_address': post[4],
+            'comments': comment_lst,
+            'likes': str(len(post[6]))
+            }
+        user_recent_posts.append(post_dict)
+
+    feed.append(user_recent_posts)
+
+
+    feed_posts = []
     cur.execute("""SELECT * FROM posts ORDER BY post_date DESC;""")
     posts = cur.fetchall()
-    all_posts = []
 
     for post in posts:
         comment_lst = []
-        comment_id_list = post[6]
+        comment_id_list = post[5]
         
         for comment_id in reversed(comment_id_list):
             cur.execute("""SELECT * FROM comments WHERE comment_id = %s;""", (comment_id,))
@@ -214,18 +263,18 @@ def feed():
             comment_lst.append(comment_dict)
         
         post_dict = {'post_id':post [0], 
-                     'title': post[1],
-                     'content': post[2],
-                     'topic': post[3],
-                     'post_date': post[4],
-                     'user_wallet_address': post[5],
+                     'content': post[1],
+                     'topic': post[2],
+                     'post_date': post[3],
+                     'user_wallet_address': post[4],
                      'comments': comment_lst,
-                     'likes': len(post[7])
+                     'likes': len(post[6])
                      }
-        all_posts.append(post_dict)
+        feed_posts.append(post_dict)
+    feed.append(feed_posts)
 
 
-    return jsonify(all_posts)
+    return jsonify(feed)
 
 if __name__ == '__main__':
         try:
