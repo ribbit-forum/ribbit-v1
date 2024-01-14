@@ -71,6 +71,7 @@ const HomePage = () => {
         const data = await response.json();
         // Handle success response
         console.log(data);
+        setLoading(false)
       } catch (error) {
         // Handle errors
         console.error("Error posting the content:", error);
@@ -108,9 +109,10 @@ const HomePage = () => {
 
 
   return (
-    <Box className="flex h-screen bg-gray-100">
-      <Sidebar />
-      <Box className="flex flex-col gap-5 px-5 pt-2">
+<Box className="flex h-screen bg-gray-100 overflow-auto">
+    <Sidebar />
+    <Box className="flex-grow flex flex-col gap-5 px-5 pt-2 overflow-auto">
+
         <GoodEvening name={address as string} />
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
