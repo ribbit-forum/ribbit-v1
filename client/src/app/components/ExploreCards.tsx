@@ -20,7 +20,7 @@ const PostCard: React.FC<PostCardProps> = ({
   likes,
 }) => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white p-6">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white p-6 text-black">
       <Text fontSize={"48px"} fontWeight={700}>
         Explore
       </Text>

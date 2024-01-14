@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 import GoodEvening from "../components/GoodEvening";
 import CreatePostComponent from "../components/CreatePostComponent";
 import Trending from "../components/Trending";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { connect, disconnect } from "starknetkit";
 import { ConnectedStarknetWindowObject } from "starknetkit";
 import { RpcProvider, Contract } from "starknet";
@@ -16,26 +16,18 @@ const HomePage = () => {
   const [postContent, setPostContent] = useState("");
   const [address, setAddress] = useState<string | undefined>(undefined);
   const [provider, setProvider] = useState<any | undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>()
+  const [posts, setPosts] = useState([]);
+
   
   const [theConnection, setConnection] =
     useState<ConnectedStarknetWindowObject>();
 
-    const posts = [
-        {
-          postId: "1",
-          content: "This is the content of the post",
-          topic: "Nature",
-          date: "2024-01-14",
-          walletAddress: "0xABC123...",
-          comments: 5,
-          likes: 20,
-        },
-        // ... more posts
-      ];
-
   // Function to handle form submission
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
+
+    setLoading(true)
 
     const connection = await connect();
 
@@ -60,22 +52,20 @@ const HomePage = () => {
       const res = await StarknetContract.increase_balance(myCall.calldata);
       await connection.provider.waitForTransaction(res.transaction_hash);
 
-      console.log("Done!");
+
+      window.alert(`Your transacation has went through ${res.transaction_hash}`)
+      setPostContent('')
 
       try {
         console.log(postContent);
-
+        let formData = new FormData();
+        formData.append('content', postContent);
+        formData.append('topic', ''); 
+        formData.append('user_wallet_address', address as string);
         // Post data to the "/createPost" endpoint
-        const response = await fetch("http://localhost:3001/createPost", {
+        const response = await fetch("http://127.0.0.1:5000/createPost", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            content: postContent,
-            topic: "",
-            user_wallet_address: address,
-          }),
+          body: formData,
         });
 
         const data = await response.json();
@@ -89,6 +79,34 @@ const HomePage = () => {
       window.alert("Not connected to Starknet");
     }
   };
+
+  const fetchFeedData = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/feed", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_wallet_address: address }), // assuming 'address' is the user's wallet address
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setPosts(data); // Update the posts state with the fetched data
+      } else {
+        console.error("Failed to fetch feed data");
+      }
+    } catch (error) {
+      console.error("Error fetching feed data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchFeedData();
+  }, []);
+
+
+
   return (
     <Box className="flex h-screen bg-gray-100">
       <Sidebar />
@@ -108,7 +126,7 @@ const HomePage = () => {
                 onSubmit={handleSubmit}
                 className="px-12 py-3 bg-[#205B45] text-white rounded-2xl font-bold shadow-lg"
               >
-                {address ? "Create Post" : "Connect to Post"}
+                {address ? loading ? "loading" : "Create Post" : "Connect to Post"}
               </button>
             </div>
           </div>
@@ -127,7 +145,7 @@ const HomePage = () => {
        />
 ))}
       </Box>
-      <Trending />
+      {/* <Trending /> */}
     </Box>
   );
 };

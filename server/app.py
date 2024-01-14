@@ -2,10 +2,12 @@ import psycopg2
 import uuid
 from flask import Flask, render_template, request, redirect, jsonify
 from datetime import datetime
+from flask_cors import CORS
 
 
 # setup flask app
 app = Flask(__name__)
+CORS(app)
 
 # setup posgres database
 conn = psycopg2.connect(host='db.bmtkipurpixoqdexanbj.supabase.co', dbname='postgres', user='postgres', password='creatorNudging', port=5432)
@@ -101,9 +103,11 @@ def newTopic():
 def createPost():
     post_id = str(uuid.uuid4())
     content = request.form.get('content')
-    topic = request.form.get('topic')
+    topic = "crypto"
     post_date = datetime.now()
     user_wallet_address = request.form.get('user_wallet_address')
+
+    print(content)
 
     cur.execute("""INSERT INTO posts (post_id, content, topic, post_date, user_wallet_address) VALUES (%s, %s, %s, %s, %s);""", 
                 (post_id, content, topic, post_date, user_wallet_address))
