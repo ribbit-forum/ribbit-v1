@@ -190,37 +190,6 @@ def createComment():
     return jsonify(comment_dict)
 
 
-# @app.route('/deletePost', methods=['POST'])
-# def deletePost():
-#     post_id_to_delete = request.form.get('post_id')
-#     user_wallet_address = request.form.get('user_wallet_address')
-    
-#     cur.execute("""SELECT * FROM posts WHERE post_id = %s AND user_wallet_address = %s;""",
-#                 (post_id_to_delete, user_wallet_address))
-#     existing_post = cur.fetchone()
-
-#     if existing_post:
-#         cur.execute("""DELETE FROM comments WHERE post_id = %s;""",
-#                         (post_id_to_delete,))
-        
-        
-#         cur.execute("""DELETE FROM likes WHERE post_id = %s;""",
-#                         (post_id_to_delete,))
-
-#         cur.execute("""DELETE FROM posts WHERE post_id = %s;""", (post_id_to_delete,))
-    
-#         cur.execute("""UPDATE users SET posts = array_remove(posts, %s) WHERE user_wallet_address = %s""",
-#                 (post_id_to_delete, user_wallet_address))
-        
-#         conn.commit()
-
-
-
-#         return jsonify({"message": "Post deleted successfully"})
-#     else:
-#         return jsonify({"error": "Post not found or you don't have permission to delete it"}), 404
-
-
 @app.route('/feed', methods = ['GET'])
 def feed(): 
     cur.execute("""SELECT * FROM posts ORDER BY post_date DESC;""")
