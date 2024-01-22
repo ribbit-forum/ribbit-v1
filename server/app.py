@@ -3,12 +3,17 @@ import uuid
 from flask import Flask, render_template, request, redirect, jsonify
 from datetime import datetime
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 
 # setup flask app
 app = Flask(__name__)
 
 # setup posgres database
-conn = psycopg2.connect(host='db.bmtkipurpixoqdexanbj.supabase.co', dbname='postgres', user='postgres', password='creatorNudging', port=5432)
+conn = psycopg2.connect(host=os.getenv("DB_URL"), dbname=os.getenv("DB_NAME"), user=os.getenv("DB_USER"), password=os.getenv("DB_PASSWORD"), port=os.getenv("DB_PORT"))
 cur = conn.cursor()
 
 # create user table
