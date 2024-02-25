@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
+    "antd": "^5.14.2",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",

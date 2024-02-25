@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Divider, IconButton, Text, VStack } from "@chakra-ui/react";
+import { Box, Divider, IconButton, InputGroup, InputLeftElement, Text, VStack } from "@chakra-ui/react";
 import {
   Button,
   Drawer,
@@ -12,7 +12,7 @@ import {
   DrawerOverlay,
   Flex,
   Icon,
-  Spacer,
+  Spacer
 } from "@chakra-ui/react";
 import {
   ExploreIcon,
@@ -20,12 +20,28 @@ import {
   NotificationIcon,
   WilliamWen,
 } from "../Icons/Icons";
-import { FiBell, FiChevronRight, FiCompass, FiHome, FiSettings } from "react-icons/fi";
+import { FiAward, FiBell, FiChevronRight, FiCompass, FiHome, FiSettings } from "react-icons/fi";
 import React, { useState } from "react";
 
-const Sidebar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+import { Input } from 'antd';
+import { SearchIcon } from "@chakra-ui/icons";
 
+const { Search } = Input;
+
+const Sidebar = () => {
+  const [topics, setTopics] = useState([]); // ["topic1", "topic2"
+  const [searchFilter, setSearchFilter] = useState(""); // ["topic1", "topic2"
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const onSearch = value => {
+    console.log("Search: ", value);
+    setSearchFilter(value);
+  };
+  const onAddTopic = value => {
+    if (value != "") {
+    setTopics([...topics, value]);
+    console.log("On Add Topic: ", value);
+  }
+};
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -44,7 +60,7 @@ const Sidebar = () => {
       {isSidebarOpen && (
         <Box
           bg="white"
-          w={"500px"}
+          w={"600px"}
           p={5}
           shadow="md"
           borderRadius="md"
@@ -106,17 +122,36 @@ const Sidebar = () => {
                   <Text>Notifications </Text>
                 </Button>
               </Flex>
+              <Flex direction={"row"}>
+              <Search
+                placeholder="input topic"
+                allowClear
+                enterButton="Add Topic"
+                size="large"
+                onSearch={onAddTopic}
+              />
+              </Flex>
+              <Flex direction={"row"}>
+              <Search
+                placeholder="input search text"
+                allowClear
+                enterButton="Search"
+                size="large"
+                onSearch={onSearch}
+              />
+              </Flex>
+              {topics
+                .filter(topic => searchFilter === "" || topic.includes(searchFilter))
+                .map((topic, index) => (
+                  <Flex key={index} direction="row">
+                    <Icon as={FiAward} />
+                    <Text>{topic}</Text>
+                  </Flex>
+                ))}
+              
             </Flex>
             <Spacer />
-
-            {/* <Flex direction={"column"} gap={"50px"} >
-          <Flex direction={"row"}>
-                <Button gap={'20px'} justifyContent={'left'} marginLeft={20} _hover={{background:'#D9D9D9'}} rounded={'lg'}>
-                <HomeIcon/>
-                <Text>Home </Text>
-                </Button>
-            </Flex>
-          </Flex> */}
+            
           </Flex>
         </Box>
       )}
