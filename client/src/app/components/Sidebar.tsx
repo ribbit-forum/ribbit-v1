@@ -15,7 +15,7 @@ import {
   Spacer
 } from "@chakra-ui/react";
 import {
-  WilliamWen,
+  RibbitLogo,
 } from "../Icons/Icons";
 import { FiAward, FiBell, FiChevronLeft, FiChevronRight, FiCompass, FiHome, FiSettings } from "react-icons/fi";
 import React, { useState } from "react";
@@ -61,69 +61,41 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
       {isSidebarOpen && (
         <Box
           bg="white"
-          w={"194px"}
+          w={"240px"}
           p={5}
           shadow="md"
           borderRadius="md"
           h={"calc(100vh)"}
           textColor={"black"}
-          padding={35}
+          padding={48}
           //   paddingRight={65}
         >
           <Flex direction={"row"} gap={"10px"}>
-            <WilliamWen/>
-            <Text
-              fontSize={36}
-              fontWeight="bold"
-              mb={4}
-              textAlign="left"
-              textColor={"#205B45"}
-            >
-              RIBBIT
-            </Text>
           </Flex>
-          <Flex direction={"column"} justifyContent={"space-around"}>
+          <Flex direction={"column"} justifyContent={"space-around"} alignItems="center">
+          <RibbitLogo />
             <Flex direction={"column"} gap={"30px"} mt={"40px"} fontSize={"18px"}>
               <Flex direction={"row"}>
                 <Button
                   gap={"20px"}
                   justifyContent={"left"}
-                  marginLeft={15}
-                  _hover={{ background: "#D9D9D9" }}
+                  marginLeft={5}
+                  _hover={{ background: "#D9D9D9", padding: "10px" }}
+                  _focus={{ outline: "none" }}
                   className="rounded-xl"
                   pr={2}
+                  padding="10px"
                 >
                   <Text>Home </Text>
                 </Button>
               </Flex>
               <Flex direction={"row"}>
-                <Button
-                  gap={"20px"}
-                  justifyContent={"left"}
-                  marginLeft={15}
-                  _hover={{ background: "#D9D9D9" }}
-                  className="rounded-xl"
-                >
-                  <Text>Explore </Text>
-                </Button>
-              </Flex>
-              <Flex direction={"row"}>
-                <Button
-                  gap={"20px"}
-                  justifyContent={"left"}
-                  marginLeft={15}
-                  _hover={{ background: "#D9D9D9" }}
-                  className="rounded-xl"
-                >
-                  <Text>Discover</Text>
-                </Button>
-              </Flex>
-              <Flex direction={"row"}>
               <Search
-                placeholder="Input topic"
+                placeholder="new topic"
                 allowClear
-                enterButton="Add Topic"
-                size="large"
+                enterButton="+"
+                size="medium"
+                buttonStyle={{ color: "blue" }}
                 onSearch={onAddTopic}
               />
               </Flex>
@@ -132,7 +104,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                 placeholder="input search text"
                 allowClear
                 enterButton="Search"
-                size="large"
+                size="medium"
                 onSearch={onSearch}
               />
               </Flex>
