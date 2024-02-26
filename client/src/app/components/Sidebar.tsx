@@ -41,10 +41,10 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
     setSearchFilter(value);
   };
   const onAddTopic = (value: string) => {
-    if (value != "") {
-    setTopics([...topics, value]);
-    console.log("On Add Topic: ", value);
-  }
+    if (value !== "" && !topics.includes(value)) {
+      setTopics([...topics, value]);
+      console.log("On Add Topic: ", value);
+    }
 };
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -128,30 +128,32 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
               </Flex>
               <Flex direction={"row"}>
               <Search
-                placeholder="input topic"
+                placeholder="Add Topic"
                 allowClear
-                enterButton="Add Topic"
+                enterButton={<Button style={{color: "green"}}>Add Topic</Button>}
                 size="large"
                 onSearch={onAddTopic}
               />
               </Flex>
               <Flex direction={"row"}>
               <Search
-                placeholder="input search text"
+                placeholder="Search Topic"
                 allowClear
-                enterButton="Search"
+                enterButton={<Button style={{color: "green"}}>Search Topics</Button>}
                 size="large"
                 onSearch={onSearch}
               />
               </Flex>
-              {topics
-                .filter(topic => searchFilter === "" || topic.includes(searchFilter))
-                .map((topic, index) => (
-                  <Flex key={index} direction="row" onClick={() => setCurrentTopic(topic)}>
-                    <Icon as={FiAward} />
-                    <Text>{topic}</Text>
-                  </Flex>
-                ))}
+              <div style={{ maxHeight: "450px", overflowY: "auto" }}>
+                {topics
+                  .filter(topic => searchFilter === "" || topic.includes(searchFilter))
+                  .map((topic, index) => (
+                    <Flex key={index} direction="row" onClick={() => setCurrentTopic(topic)} marginBottom="10px">
+                      <Icon as={FiAward} />
+                      <Text>{topic}</Text>
+                    </Flex>
+                  ))}
+              </div>
               
             </Flex>
             <Spacer />
