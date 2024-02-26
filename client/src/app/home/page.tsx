@@ -144,7 +144,7 @@ const HomePage = () => {
       setProvider(connection.account);
       setAddress(connection.selectedAddress);
 
-      const deployedStarknetContract = "0x5f7cd1fd465baff2ba9d2d1501ad0a2eb5337d9a885be319366b5205a414fdd";
+      const deployedStarknetContract = "0x07bd868e8ba52991fce96af898c529c8bbc011f982a1e49626118050c4b0d0d6";
 
       const starknetABI = await connection.provider.getClassAt(deployedStarknetContract);
 
