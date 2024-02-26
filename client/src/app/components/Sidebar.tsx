@@ -22,7 +22,6 @@ import React, { useState } from "react";
 
 import { Input } from 'antd';
 import { SearchIcon } from "@chakra-ui/icons";
-
 const { Search } = Input;
 
 type SidebarProps = {
@@ -62,7 +61,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
       {isSidebarOpen && (
         <Box
           bg="white"
-          w={"240px"}
+          w={"800px"}
           p={5}
           shadow="md"
           borderRadius="md"
@@ -115,12 +114,13 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                   <Text>Notifications </Text>
                 </Button>
               </Flex> */}
+
               <Flex direction={"row"}>
               <Search
                 placeholder="Add Topic"
                 allowClear
-                enterButton={<Button style={{color: "green"}}>Add Topic</Button>}
-                size="large"
+                enterButton="+"
+                size="medium"
                 onSearch={onAddTopic}
               />
               </Flex>
@@ -128,8 +128,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
               <Search
                 placeholder="Search Topic"
                 allowClear
-
-                enterButton={<Button style={{color: "green"}}>Search Topics</Button>}
+                enterButton="+"
                 size="medium"
                 onSearch={onSearch}
               />
