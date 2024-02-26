@@ -13,7 +13,7 @@ struct Post {
 
 // struct message
 
-`
+
 #[starknet::interface]
 trait ISimpleStorage<TContractState> {
     fn getPostLength(self: @TContractState) -> u128;
