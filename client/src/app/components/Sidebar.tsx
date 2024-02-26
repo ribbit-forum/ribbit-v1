@@ -101,7 +101,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
           <Flex direction={"column"} justifyContent={"space-around"} alignItems="center">
           <RibbitLogo />
             <Flex direction={"column"} gap={"30px"} mt={"40px"} fontSize={"18px"}>
-              <Flex direction={"row"}>
+              {/* <Flex direction={"row"}>
                 <Button
                   gap={"20px"}
                   justifyContent={"left"}
@@ -114,7 +114,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                 >
                   <Text>Home </Text>
                 </Button>
-              </Flex>
+              </Flex> */}
 
               {/* <Flex direction={"row"}>
                 <Button
