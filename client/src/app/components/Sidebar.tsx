@@ -28,15 +28,19 @@ import { SearchIcon } from "@chakra-ui/icons";
 
 const { Search } = Input;
 
-const Sidebar = () => {
+type SidebarProps = {
+  setCurrentTopic: (arg0: never) => void;
+};
+
+const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
   const [topics, setTopics] = useState([]); // ["topic1", "topic2"
   const [searchFilter, setSearchFilter] = useState(""); // ["topic1", "topic2"
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const onSearch = value => {
+  const onSearch = (value: React.SetStateAction<string>) => {
     console.log("Search: ", value);
     setSearchFilter(value);
   };
-  const onAddTopic = value => {
+  const onAddTopic = (value: string) => {
     if (value != "") {
     setTopics([...topics, value]);
     console.log("On Add Topic: ", value);
@@ -143,7 +147,7 @@ const Sidebar = () => {
               {topics
                 .filter(topic => searchFilter === "" || topic.includes(searchFilter))
                 .map((topic, index) => (
-                  <Flex key={index} direction="row">
+                  <Flex key={index} direction="row" onClick={() => setCurrentTopic(topic)}>
                     <Icon as={FiAward} />
                     <Text>{topic}</Text>
                   </Flex>

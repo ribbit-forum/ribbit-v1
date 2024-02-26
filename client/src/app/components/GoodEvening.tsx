@@ -1,8 +1,7 @@
 'use client';
 
 interface GoodEveningProps {
-  name
-: string;
+  name: string;
 }
 
 export default function GoodEvening({ name }: GoodEveningProps) {
