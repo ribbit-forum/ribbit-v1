@@ -21,7 +21,23 @@ import { FiAward, FiBell, FiChevronLeft, FiChevronRight, FiCompass, FiHome, FiSe
 import React, { useState } from "react";
 
 import { Input } from 'antd';
+import {
+  RibbitLogo,
+} from "../Icons/Icons";
 import { SearchIcon } from "@chakra-ui/icons";
+
+const topics = [
+  "Dad Jokes",
+  "Tech Puns",
+  "Puns",
+  "Tech Life",
+  "Shower Thoughts",
+  "Space Dogs",
+  "Food Jokes",
+  "Weather Puns",
+  "Gen Z Trends",
+  "Late Night Thoughts"
+];
 
 const { Search } = Input;
 
@@ -30,7 +46,19 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
-  const [topics, setTopics] = useState([]); // ["topic1", "topic2"
+  const [topics, setTopics] = useState([
+    "All",
+    "Dad Jokes",
+    "Tech Puns",
+    "Puns",
+    "Tech Life",
+    "Shower Thoughts",
+    "Space Dogs",
+    "Food Jokes",
+    "Weather Puns",
+    "Gen Z Trends",
+    "Late Night Thoughts"
+  ]); // ["topic1", "topic2"
   const [searchFilter, setSearchFilter] = useState(""); // ["topic1", "topic2"
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const onSearch = (value: React.SetStateAction<string>) => {
@@ -38,10 +66,10 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
     setSearchFilter(value);
   };
   const onAddTopic = (value: string) => {
-    if (value != "") {
-    setTopics([...topics, value]);
-    console.log("On Add Topic: ", value);
-  }
+    if (value !== "" && !topics.includes(value)) {
+      setTopics([...topics, value]);
+      console.log("On Add Topic: ", value);
+    }
 };
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -55,13 +83,14 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
         position="fixed"
         bottom="5%"
         left={isSidebarOpen ? "48" : "48px"}
+        top="95%"
         transform="translateY(-50%)"
         zIndex="999" aria-label={""}/>
 
       {isSidebarOpen && (
         <Box
           bg="white"
-          w={"240px"}
+          w={"500px"}
           p={5}
           shadow="md"
           borderRadius="md"
@@ -74,8 +103,10 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
           </Flex>
           <Flex direction={"column"} justifyContent={"space-around"} alignItems="center">
           <RibbitLogo />
+          <Flex direction={"column"} justifyContent={"space-around"} alignItems="center">
+          <RibbitLogo />
             <Flex direction={"column"} gap={"30px"} mt={"40px"} fontSize={"18px"}>
-              <Flex direction={"row"}>
+              {/* <Flex direction={"row"}>
                 <Button
                   gap={"20px"}
                   justifyContent={"left"}
@@ -85,13 +116,39 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                   className="rounded-xl"
                   pr={2}
                   padding="10px"
+                  padding="10px"
                 >
                   <Text>Home </Text>
                 </Button>
+              </Flex> */}
+
+              {/* <Flex direction={"row"}>
+                <Button
+                  gap={"20px"}
+                  justifyContent={"left"}
+                  marginLeft={15}
+                  _hover={{ background: "#D9D9D9" }}
+                  className="rounded-xl"
+                >
+                  <ExploreIcon />
+                  <Text>Explore </Text>
+                </Button>
               </Flex>
               <Flex direction={"row"}>
+                <Button
+                  gap={"20px"}
+                  justifyContent={"left"}
+                  marginLeft={15}
+                  _hover={{ background: "#D9D9D9" }}
+                  className="rounded-xl"
+                >
+                  <NotificationIcon />
+                  <Text>Notifications </Text>
+                </Button>
+              </Flex> */}
+              <Flex direction={"row"}>
               <Search
-                placeholder="new topic"
+                placeholder="Add Topic"
                 allowClear
                 enterButton="+"
                 size="medium"
@@ -101,21 +158,24 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
               </Flex>
               <Flex direction={"row"}>
               <Search
-                placeholder="input search text"
+                placeholder="Search Topic"
                 allowClear
                 enterButton="Search"
-                size="medium"
+                size="large"
                 onSearch={onSearch}
               />
               </Flex>
-              {topics
-                .filter(topic => searchFilter === "" || topic.includes(searchFilter))
-                .map((topic, index) => (
-                  <Flex key={index} direction="row" onClick={() => setCurrentTopic(topic)}>
-                    <Icon as={FiAward} />
-                    <Text>{topic}</Text>
-                  </Flex>
-                ))}
+              {searchFilter !== "" && <Text>Current Search: {searchFilter}</Text>}
+              <div style={{ maxHeight: "450px", overflowY: "auto" }}>
+                {topics
+                  .filter(topic => searchFilter === "" || topic.includes(searchFilter))
+                  .map((topic, index) => (
+                    <Flex key={index} direction="row" onClick={() => setCurrentTopic(topic)} marginBottom="10px">
+                      <Icon as={FiAward} />
+                      <Text>{topic}</Text>
+                    </Flex>
+                  ))}
+              </div>
               
             </Flex>
             <Spacer />
