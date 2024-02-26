@@ -33,7 +33,7 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
-  const [topics, setTopics] = useState([]); // ["topic1", "topic2"
+  const [topics, setTopics] = useState(["All"]); // ["topic1", "topic2"
   const [searchFilter, setSearchFilter] = useState(""); // ["topic1", "topic2"
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const onSearch = (value: React.SetStateAction<string>) => {
