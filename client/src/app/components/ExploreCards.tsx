@@ -2,6 +2,7 @@
 import { Text } from "@chakra-ui/react";
 interface PostCardProps {
   setCurrentTopic: (arg0: string) => void;
+  setCurrentAddress: (arg0: string) => void;
   postId: string;
   content: string;
   topic: string;
@@ -14,6 +15,7 @@ interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = ({
   setCurrentTopic,
+  setCurrentAddress,
   postId,
   content,
   topic,
@@ -27,7 +29,7 @@ const PostCard: React.FC<PostCardProps> = ({
     <div className="max-w-sm mx-auto rounded overflow-hidden shadow-lg bg-white p-6 text-black">
       <div className="text-sm mb-2">
         Posted by: 
-        <a className="text-blue-500">
+        <a onClick={() => setCurrentAddress(walletAddress)} className="text-blue-500">
         {" "}{walletAddress}{" "}
         </a> 
         to 

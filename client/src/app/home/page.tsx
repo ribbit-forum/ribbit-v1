@@ -125,6 +125,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState<boolean>()
   const [posts, setPosts] = useState(examplePosts);
   const [currentTopic, setCurrentTopic] = useState<string>("All");
+  const [currentAddress, setCurrentAddress] = useState<string>("All");
 
   
   const [theConnection, setConnection] =
@@ -230,7 +231,14 @@ const HomePage = () => {
             className="w-full px-4 py-8 border border-[#919191] rounded-xl focus:outline-none bg-[#EFEFEF] text-[#919191]"
           />
           <div className="flex items-center justify-between">
-            <p>Current Topic: {currentTopic}</p>
+            <p>Topic: {currentTopic}</p>
+            <Button onClick={() => {
+              setCurrentTopic("All");
+            }}>Reset Topic</Button>
+            <p>Address: {currentAddress}</p>
+            <Button onClick={() => {
+              setCurrentAddress("All");
+            }}>Reset Address</Button>
             <div className="relative flex items-center">
               <div className="flex items-center space-x-4">
                 <button
@@ -247,10 +255,11 @@ const HomePage = () => {
 
         <Flex direction="row" gap="10px" wrap="wrap">
           {posts
-            .filter((post) => post.topic.toLowerCase() === currentTopic.toLowerCase() || currentTopic === "All")
+            .filter((post) => ((post.topic.toLowerCase() === currentTopic.toLowerCase() || currentTopic === "All") && (post.walletAddress.toLowerCase() === currentAddress.toLowerCase() || currentAddress === "All")))
             .map((post) => (
               <PostCard 
               setCurrentTopic={setCurrentTopic}
+              setCurrentAddress={setCurrentAddress}
                 key={post.postId}
                 postId={post.postId.toString()}
                 content={post.content}
