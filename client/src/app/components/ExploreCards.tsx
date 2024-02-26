@@ -20,7 +20,7 @@ const PostCard: React.FC<PostCardProps> = ({
   likes,
 }) => {
   return (
-    <div className="max-w-sm mx-auto rounded overflow-hidden shadow-lg bg-white p-6 text-black" style={{margin: "10px"}}>
+    <div className="max-w-sm mx-auto rounded overflow-hidden shadow-lg bg-white p-6 text-black">
       <p className="text-gray-700 text-base mb-4">{content}</p>
       <div className="text-sm mb-2">Topic: {topic}</div>
       <div className="text-sm mb-2">Post ID: {postId}</div>

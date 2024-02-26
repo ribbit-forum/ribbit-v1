@@ -225,18 +225,20 @@ const HomePage = () => {
         <hr className="w-full h-1 bg-[#D9D9D9]" />
 
         <Flex direction="row" gap="10px" wrap="wrap">
-          {posts.map((post) => (
-            <PostCard 
-              key={post.postId}
-              postId={post.postId.toString()}
-              content={post.content}
-              topic={post.topic}
-              date={post.date}
-              walletAddress={post.walletAddress}
-              comments={3}
-              likes={post.likes}
-            />
-          ))}
+          {posts
+            .filter((post) => post.topic.toLowerCase() === currentTopic.toLowerCase() || currentTopic === "All")
+            .map((post) => (
+              <PostCard 
+                key={post.postId}
+                postId={post.postId.toString()}
+                content={post.content}
+                topic={post.topic}
+                date={post.date}
+                walletAddress={post.walletAddress}
+                comments={3}
+                likes={post.likes}
+              />
+            ))}
         </Flex>
         </Box>
 
