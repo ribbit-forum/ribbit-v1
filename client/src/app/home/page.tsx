@@ -22,6 +22,7 @@ const examplePosts = [
     walletAddress: "0xPotato",
     likes: 45,
     comments: 12,
+    imageUrl: "https://media0.giphy.com/media/unQ3IJU2RG7DO/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&ep=v1_gifs_related&rid=200w.gif&ct=g",
   },
   {
     postId: 2,
@@ -31,6 +32,7 @@ const examplePosts = [
     walletAddress: "0xDuck123",
     likes: 52,
     comments: 9,
+    imageUrl: "https://media0.giphy.com/media/unQ3IJU2RG7DO/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&ep=v1_gifs_related&rid=200w.gif&ct=g",
   },
   {
     postId: 3,
@@ -40,6 +42,7 @@ const examplePosts = [
     walletAddress: "0xScarecrow",
     likes: 38,
     comments: 8,
+    imageUrl: "https://media0.giphy.com/media/unQ3IJU2RG7DO/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&ep=v1_gifs_related&rid=200w.gif&ct=g",
   },
   {
     postId: 4,
@@ -49,6 +52,7 @@ const examplePosts = [
     walletAddress: "0xCompLife",
     likes: 60,
     comments: 11,
+    imageUrl: "https://media0.giphy.com/media/unQ3IJU2RG7DO/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&ep=v1_gifs_related&rid=200w.gif&ct=g",
   },
   {
     postId: 5,
@@ -58,6 +62,7 @@ const examplePosts = [
     walletAddress: "0xDeepThought",
     likes: 47,
     comments: 7,
+    imageUrl: "https://media0.giphy.com/media/unQ3IJU2RG7DO/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&ep=v1_gifs_related&rid=200w.gif&ct=g",
   },
   {
     postId: 6,
@@ -67,6 +72,7 @@ const examplePosts = [
     walletAddress: "0xDogeCoin",
     likes: 75,
     comments: 15,
+    imageUrl: "https://media0.giphy.com/media/unQ3IJU2RG7DO/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&ep=v1_gifs_related&rid=200w.gif&ct=g",
   },
   {
     postId: 7,
@@ -76,6 +82,7 @@ const examplePosts = [
     walletAddress: "0xPastaChef",
     likes: 55,
     comments: 14,
+    imageUrl: "https://media0.giphy.com/media/unQ3IJU2RG7DO/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&ep=v1_gifs_related&rid=200w.gif&ct=g",
   },
   {
     postId: 8,
@@ -85,6 +92,7 @@ const examplePosts = [
     walletAddress: "0xCloudyDays",
     likes: 43,
     comments: 5,
+    imageUrl: "https://media0.giphy.com/media/unQ3IJU2RG7DO/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&ep=v1_gifs_related&rid=200w.gif&ct=g",
   },
   {
     postId: 9,
@@ -94,6 +102,7 @@ const examplePosts = [
     walletAddress: "0xPlantMom",
     likes: 66,
     comments: 10,
+    imageUrl: "https://media0.giphy.com/media/unQ3IJU2RG7DO/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&ep=v1_gifs_related&rid=200w.gif&ct=g",
   },
   {
     postId: 10,
@@ -103,6 +112,7 @@ const examplePosts = [
     walletAddress: "0xInsomniac",
     likes: 82,
     comments: 18,
+    imageUrl: "https://media0.giphy.com/media/unQ3IJU2RG7DO/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&ep=v1_gifs_related&rid=200w.gif&ct=g",
   }
 ];
 
