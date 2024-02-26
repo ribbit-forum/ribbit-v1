@@ -271,7 +271,7 @@ const HomePage = () => {
                 topic={post.topic}
                 date={post.date}
                 walletAddress={post.walletAddress}
-                comments={3}
+                comments={post.comments}
                 likes={post.likes}
                 imageUrl={post.imageUrl}
               />

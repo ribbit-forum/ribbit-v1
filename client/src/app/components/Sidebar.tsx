@@ -14,14 +14,27 @@ import {
   Icon,
   Spacer
 } from "@chakra-ui/react";
-import {
-  RibbitLogo,
-} from "../Icons/Icons";
 import { FiAward, FiBell, FiChevronLeft, FiChevronRight, FiCompass, FiHome, FiSettings } from "react-icons/fi";
 import React, { useState } from "react";
 
 import { Input } from 'antd';
+import {
+  RibbitLogo,
+} from "../Icons/Icons";
 import { SearchIcon } from "@chakra-ui/icons";
+
+const topics = [
+  "Dad Jokes",
+  "Tech Puns",
+  "Puns",
+  "Tech Life",
+  "Shower Thoughts",
+  "Space Dogs",
+  "Food Jokes",
+  "Weather Puns",
+  "Gen Z Trends",
+  "Late Night Thoughts"
+];
 
 const { Search } = Input;
 
@@ -30,7 +43,19 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
-  const [topics, setTopics] = useState(["All"]); // ["topic1", "topic2"
+  const [topics, setTopics] = useState([
+    "All",
+    "Dad Jokes",
+    "Tech Puns",
+    "Puns",
+    "Tech Life",
+    "Shower Thoughts",
+    "Space Dogs",
+    "Food Jokes",
+    "Weather Puns",
+    "Gen Z Trends",
+    "Late Night Thoughts"
+  ]); // ["topic1", "topic2"
   const [searchFilter, setSearchFilter] = useState(""); // ["topic1", "topic2"
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const onSearch = (value: React.SetStateAction<string>) => {
@@ -62,7 +87,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
       {isSidebarOpen && (
         <Box
           bg="white"
-          w={"240px"}
+          w={"500px"}
           p={5}
           shadow="md"
           borderRadius="md"
