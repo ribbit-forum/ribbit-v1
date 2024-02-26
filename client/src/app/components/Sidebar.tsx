@@ -20,7 +20,7 @@ import {
   NotificationIcon,
   WilliamWen,
 } from "../Icons/Icons";
-import { FiAward, FiBell, FiChevronRight, FiCompass, FiHome, FiSettings } from "react-icons/fi";
+import { FiAward, FiBell, FiChevronLeft, FiChevronRight, FiCompass, FiHome, FiSettings } from "react-icons/fi";
 import React, { useState } from "react";
 
 import { Input } from 'antd';
@@ -53,11 +53,11 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
   return (
     <>
       <IconButton
-        icon={isSidebarOpen ? <FiChevronRight /> : <FiChevronRight />}
+        icon={isSidebarOpen ? <FiChevronLeft /> : <FiChevronRight />}
         onClick={handleSidebarToggle}
         position="fixed"
         top="50%"
-        left="20px"
+        left={isSidebarOpen ? "200px" : "20px"}
         transform="translateY(-50%)"
         zIndex="999" aria-label={""}      />
 
@@ -88,7 +88,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
           </Flex>
           <hr className="w-48 h-1 bg-[#D9D9D9]" />
           <Flex direction={"column"} justifyContent={"space-around"}>
-            <Flex direction={"column"} gap={"50px"} mt={"40px"} fontSize={"18px"}>
+            <Flex direction={"column"} gap={"30px"} mt={"40px"} fontSize={"18px"}>
               <Flex direction={"row"}>
                 <Button
                   gap={"20px"}
