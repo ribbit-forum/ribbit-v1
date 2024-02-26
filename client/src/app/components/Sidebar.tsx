@@ -38,7 +38,8 @@ const topics = [
 const { Search } = Input;
 
 type SidebarProps = {
-  setCurrentTopic: (arg0: never) => void;
+  // If topic is a string
+  setCurrentTopic: (topic: string) => void;
 };
 
 const Sidebar = ({ setCurrentTopic }: SidebarProps) => {

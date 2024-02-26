@@ -310,7 +310,7 @@ const HomePage = () => {
         </form>
         <hr className="w-full h-1 bg-[#D9D9D9]" />
 
-        <Flex direction="row" gap="10px" wrap="wrap">
+        <Flex gap="10px" wrap="wrap">
           {posts
             .filter((post) => ((post.topic.toLowerCase() === currentTopic.toLowerCase() || currentTopic === "All") && (post.walletAddress.toLowerCase() === currentAddress.toLowerCase() || currentAddress === "All")))
             .map((post) => (
