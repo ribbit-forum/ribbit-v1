@@ -127,7 +127,7 @@ const HomePage = () => {
   const [currentTopic, setCurrentTopic] = useState<string>("All");
   const [currentAddress, setCurrentAddress] = useState<string>("All");
 
-  
+
   const [theConnection, setConnection] =
     useState<ConnectedStarknetWindowObject>();
 
@@ -147,8 +147,8 @@ const HomePage = () => {
       const deployedStarknetContract = "0x5f7cd1fd465baff2ba9d2d1501ad0a2eb5337d9a885be319366b5205a414fdd";
 
       const starknetABI = await connection.provider.getClassAt(deployedStarknetContract);
-      
-      
+
+
       if (!starknetABI) {
         throw new Error("ABI not found.");
       }
@@ -168,7 +168,7 @@ const HomePage = () => {
         console.log(postContent);
         let formData = new FormData();
         formData.append('content', postContent);
-        formData.append('topic', ''); 
+        formData.append('topic', '');
         formData.append('user_wallet_address', address as string);
         // Post data to the "/createPost" endpoint
         const response = await fetch("http://127.0.0.1:5000/createPost", {
@@ -217,10 +217,15 @@ const HomePage = () => {
 
 
   return (
-<Box className="flex h-screen bg-gray-100 overflow-auto">
-    <Sidebar setCurrentTopic={setCurrentTopic} />
-    <Box className="flex-grow flex flex-col gap-5 px-5 pt-2 overflow-auto">
+    <Box className="flex h-screen bg-gray-100 overflow-auto">
+      <Sidebar setCurrentTopic={setCurrentTopic} />
+      <Box className="flex-grow flex flex-col gap-5 px-10 pt-2 overflow-auto">
 
+        <Text className="text-5xl font-bold mt-8 text-left color"
+          textColor={"#EC796B"}
+        >
+          RIBBIT
+        </Text>
         <GoodEvening name={address as string} />
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
@@ -257,9 +262,9 @@ const HomePage = () => {
           {posts
             .filter((post) => ((post.topic.toLowerCase() === currentTopic.toLowerCase() || currentTopic === "All") && (post.walletAddress.toLowerCase() === currentAddress.toLowerCase() || currentAddress === "All")))
             .map((post) => (
-              <PostCard 
-              setCurrentTopic={setCurrentTopic}
-              setCurrentAddress={setCurrentAddress}
+              <PostCard
+                setCurrentTopic={setCurrentTopic}
+                setCurrentAddress={setCurrentAddress}
                 key={post.postId}
                 postId={post.postId.toString()}
                 content={post.content}
@@ -272,7 +277,7 @@ const HomePage = () => {
               />
             ))}
         </Flex>
-        </Box>
+      </Box>
 
       {/* <Trending /> */}
     </Box>
