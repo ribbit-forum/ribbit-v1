@@ -15,9 +15,6 @@ import {
   Spacer
 } from "@chakra-ui/react";
 import {
-  ExploreIcon,
-  HomeIcon,
-  NotificationIcon,
   WilliamWen,
 } from "../Icons/Icons";
 import { FiAward, FiBell, FiChevronLeft, FiChevronRight, FiCompass, FiHome, FiSettings } from "react-icons/fi";
@@ -56,15 +53,15 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
         icon={isSidebarOpen ? <FiChevronLeft /> : <FiChevronRight />}
         onClick={handleSidebarToggle}
         position="fixed"
-        top="50%"
-        left={isSidebarOpen ? "200px" : "20px"}
+        bottom="5%"
+        left={isSidebarOpen ? "48" : "48px"}
         transform="translateY(-50%)"
-        zIndex="999" aria-label={""}      />
+        zIndex="999" aria-label={""}/>
 
       {isSidebarOpen && (
         <Box
           bg="white"
-          w={"600px"}
+          w={"194px"}
           p={5}
           shadow="md"
           borderRadius="md"
@@ -74,8 +71,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
           //   paddingRight={65}
         >
           <Flex direction={"row"} gap={"10px"}>
-            <WilliamWen />
-
+            <WilliamWen/>
             <Text
               fontSize={36}
               fontWeight="bold"
@@ -86,7 +82,6 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
               RIBBIT
             </Text>
           </Flex>
-          <hr className="w-48 h-1 bg-[#D9D9D9]" />
           <Flex direction={"column"} justifyContent={"space-around"}>
             <Flex direction={"column"} gap={"30px"} mt={"40px"} fontSize={"18px"}>
               <Flex direction={"row"}>
@@ -98,7 +93,6 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                   className="rounded-xl"
                   pr={2}
                 >
-                  <HomeIcon />
                   <Text>Home </Text>
                 </Button>
               </Flex>
@@ -110,7 +104,6 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                   _hover={{ background: "#D9D9D9" }}
                   className="rounded-xl"
                 >
-                  <ExploreIcon />
                   <Text>Explore </Text>
                 </Button>
               </Flex>
@@ -122,13 +115,12 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                   _hover={{ background: "#D9D9D9" }}
                   className="rounded-xl"
                 >
-                  <NotificationIcon />
-                  <Text>Notifications </Text>
+                  <Text>Discover</Text>
                 </Button>
               </Flex>
               <Flex direction={"row"}>
               <Search
-                placeholder="input topic"
+                placeholder="Input topic"
                 allowClear
                 enterButton="Add Topic"
                 size="large"
