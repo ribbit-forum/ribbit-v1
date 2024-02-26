@@ -102,7 +102,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                   <Text>Home </Text>
                 </Button>
               </Flex>
-              <Flex direction={"row"}>
+              {/* <Flex direction={"row"}>
                 <Button
                   gap={"20px"}
                   justifyContent={"left"}
@@ -125,7 +125,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                   <NotificationIcon />
                   <Text>Notifications </Text>
                 </Button>
-              </Flex>
+              </Flex> */}
               <Flex direction={"row"}>
               <Search
                 placeholder="Add Topic"
@@ -144,6 +144,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                 onSearch={onSearch}
               />
               </Flex>
+              {searchFilter !== "" && <Text>Current Search: {searchFilter}</Text>}
               <div style={{ maxHeight: "450px", overflowY: "auto" }}>
                 {topics
                   .filter(topic => searchFilter === "" || topic.includes(searchFilter))
