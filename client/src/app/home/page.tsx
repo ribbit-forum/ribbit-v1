@@ -7,10 +7,94 @@ import { useEffect, useState } from "react";
 
 import { ConnectedStarknetWindowObject } from "starknetkit";
 import CreatePostComponent from "../components/CreatePostComponent";
+import { Flex } from "antd";
 import GoodEvening from "../components/GoodEvening";
 import PostCard from "../components/ExploreCards";
 import Sidebar from "../components/Sidebar";
 import Trending from "../components/Trending";
+
+const examplePosts = [
+  {
+    postId: 1,
+    content: "This is the content of post 1",
+    topic: "Technology",
+    date: "2024-02-25",
+    walletAddress: "0x123...",
+    likes: 10,
+  },
+  {
+    postId: 2,
+    content: "This is the content of post 2",
+    topic: "Science",
+    date: "2024-02-24",
+    walletAddress: "0x456...",
+    likes: 20,
+  },
+  {
+    postId: 3,
+    content: "This is the content of post 3",
+    topic: "Art",
+    date: "2024-02-23",
+    walletAddress: "0x789...",
+    likes: 5,
+  },
+  {
+    postId: 4,
+    content: "This is the content of post 4",
+    topic: "Music",
+    date: "2024-02-22",
+    walletAddress: "0xabc...",
+    likes: 15,
+  },
+  {
+    postId: 5,
+    content: "This is the content of post 5",
+    topic: "Literature",
+    date: "2024-02-21",
+    walletAddress: "0xdef...",
+    likes: 7,
+  },
+  {
+    postId: 6,
+    content: "This is the content of post 6",
+    topic: "Travel",
+    date: "2024-02-20",
+    walletAddress: "0xghi...",
+    likes: 25,
+  },
+  {
+    postId: 7,
+    content: "This is the content of post 7",
+    topic: "Food",
+    date: "2024-02-19",
+    walletAddress: "0xjkl...",
+    likes: 30,
+  },
+  {
+    postId: 8,
+    content: "This is the content of post 8",
+    topic: "Fashion",
+    date: "2024-02-18",
+    walletAddress: "0xmnop...",
+    likes: 8,
+  },
+  {
+    postId: 9,
+    content: "This is the content of post 9",
+    topic: "Sports",
+    date: "2024-02-17",
+    walletAddress: "0xqrst...",
+    likes: 14,
+  },
+  {
+    postId: 10,
+    content: "This is the content of post 10",
+    topic: "Gaming",
+    date: "2024-02-16",
+    walletAddress: "0xuvwx...",
+    likes: 50,
+  }
+];
 
 const HomePage = () => {
   // State to store the input value
@@ -18,7 +102,7 @@ const HomePage = () => {
   const [address, setAddress] = useState<string | undefined>(undefined);
   const [provider, setProvider] = useState<any | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>()
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(examplePosts);
   const [currentTopic, setCurrentTopic] = useState<string>("All");
 
   
@@ -139,19 +223,23 @@ const HomePage = () => {
           </div>
         </form>
         <hr className="w-full h-1 bg-[#D9D9D9]" />
-        {posts.map((post) => (
-<PostCard
-         key={post.postId}
-         postId={post.postId}
-         content={post.content}
-         topic={post.topic}
-         date={post.date}
-         walletAddress={post.walletAddress}
-         comments={post.comments}
-         likes={post.likes}
-       />
-))}
-      </Box>
+
+        <Flex direction="row" gap="10px" wrap="wrap">
+          {posts.map((post) => (
+            <PostCard 
+              key={post.postId}
+              postId={post.postId.toString()}
+              content={post.content}
+              topic={post.topic}
+              date={post.date}
+              walletAddress={post.walletAddress}
+              comments={3}
+              likes={post.likes}
+            />
+          ))}
+        </Flex>
+        </Box>
+
       {/* <Trending /> */}
     </Box>
   );
