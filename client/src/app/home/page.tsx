@@ -214,7 +214,7 @@ const HomePage = () => {
               <div className="flex items-center space-x-4">
                 <button
                   onSubmit={handleSubmit}
-                  className="px-12 py-3 bg-[#205B45] text-white rounded-2xl font-bold shadow-lg"
+                  className="px-12 py-3 bg-[#4D4DB2] text-white rounded-2xl font-bold shadow-lg"
                 >
                   {address ? (loading ? "loading" : "Create Post") : "Connect to Post"}
                 </button>
