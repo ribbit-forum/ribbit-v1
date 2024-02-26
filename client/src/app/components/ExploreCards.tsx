@@ -43,7 +43,7 @@ const PostCard: React.FC<PostCardProps> = ({
       <p className="text-gray-700 text-base mb-4">{content}</p>
       {/* <div className="text-sm mb-2">Post ID: {postId}</div> */}
       <div className="flex items-center justify-between mt-4">
-      <span className="text-sm font-semibold">{likes} Likes</span>
+      <span className="text-sm font-semibold">{likes} STRKs (0.01)</span>
         <span className="text-sm font-semibold">{comments} Comments</span>
       </div>
     </div>
