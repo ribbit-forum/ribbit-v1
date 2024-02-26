@@ -1,6 +1,7 @@
 // components/PostCard.tsx
 import { Text } from "@chakra-ui/react";
 interface PostCardProps {
+  setCurrentTopic: (arg0: string) => void;
   postId: string;
   content: string;
   topic: string;
@@ -12,6 +13,7 @@ interface PostCardProps {
 }
 
 const PostCard: React.FC<PostCardProps> = ({
+  setCurrentTopic,
   postId,
   content,
   topic,
@@ -23,7 +25,17 @@ const PostCard: React.FC<PostCardProps> = ({
 }) => {
   return (
     <div className="max-w-sm mx-auto rounded overflow-hidden shadow-lg bg-white p-6 text-black">
-      <div className="text-sm mb-2">Posted by: {walletAddress} to {topic} on {new Date(date).toLocaleDateString()}</div>
+      <div className="text-sm mb-2">
+        Posted by: 
+        <a className="text-blue-500">
+        {" "}{walletAddress}{" "}
+        </a> 
+        to 
+        <a onClick={() => setCurrentTopic(topic)} className="text-blue-500">
+        {" "}{topic}{" "}
+        </a> 
+        on {new Date(date).toLocaleDateString()}
+      </div>
 
       {imageUrl && <img src={imageUrl} alt="Post Image" className="w-full h-48 object-cover mb-4" />}
       <p className="text-gray-700 text-base mb-4">{content}</p>

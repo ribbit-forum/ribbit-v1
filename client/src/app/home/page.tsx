@@ -240,6 +240,7 @@ const HomePage = () => {
             .filter((post) => post.topic.toLowerCase() === currentTopic.toLowerCase() || currentTopic === "All")
             .map((post) => (
               <PostCard 
+              setCurrentTopic={setCurrentTopic}
                 key={post.postId}
                 postId={post.postId.toString()}
                 content={post.content}
