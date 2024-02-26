@@ -14,13 +14,13 @@ import {
   Icon,
   Spacer
 } from "@chakra-ui/react";
-import {
-  RibbitLogo,
-} from "../Icons/Icons";
 import { FiAward, FiBell, FiChevronLeft, FiChevronRight, FiCompass, FiHome, FiSettings } from "react-icons/fi";
 import React, { useState } from "react";
 
 import { Input } from 'antd';
+import {
+  RibbitLogo,
+} from "../Icons/Icons";
 
 const topics = [
   "Dad Jokes",
@@ -98,7 +98,8 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
           <Flex direction={"row"} gap={"10px"}>
           </Flex>
           <Flex direction={"column"} justifyContent={"space-around"} alignItems="center">
-          <RibbitLogo />
+            <div style={{marginLeft: "100px", marginRight: "100px"}}><RibbitLogo /></div>
+          
             <Flex direction={"column"} gap={"30px"} mt={"40px"} fontSize={"18px"}>
               {/* <Flex direction={"row"}>
                 <Button
