@@ -30,7 +30,7 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
-  const [topics, setTopics] = useState([]); // ["topic1", "topic2"
+  const [topics, setTopics] = useState(["All"]); // ["topic1", "topic2"
   const [searchFilter, setSearchFilter] = useState(""); // ["topic1", "topic2"
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const onSearch = (value: React.SetStateAction<string>) => {
@@ -38,10 +38,10 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
     setSearchFilter(value);
   };
   const onAddTopic = (value: string) => {
-    if (value != "") {
-    setTopics([...topics, value]);
-    console.log("On Add Topic: ", value);
-  }
+    if (value !== "" && !topics.includes(value)) {
+      setTopics([...topics, value]);
+      console.log("On Add Topic: ", value);
+    }
 };
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -55,6 +55,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
         position="fixed"
         bottom="5%"
         left={isSidebarOpen ? "48" : "48px"}
+        top="95%"
         transform="translateY(-50%)"
         zIndex="999" aria-label={""}/>
 
@@ -89,33 +90,61 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                   <Text>Home </Text>
                 </Button>
               </Flex>
+
+              {/* <Flex direction={"row"}>
+                <Button
+                  gap={"20px"}
+                  justifyContent={"left"}
+                  marginLeft={15}
+                  _hover={{ background: "#D9D9D9" }}
+                  className="rounded-xl"
+                >
+                  <ExploreIcon />
+                  <Text>Explore </Text>
+                </Button>
+              </Flex>
+              <Flex direction={"row"}>
+                <Button
+                  gap={"20px"}
+                  justifyContent={"left"}
+                  marginLeft={15}
+                  _hover={{ background: "#D9D9D9" }}
+                  className="rounded-xl"
+                >
+                  <NotificationIcon />
+                  <Text>Notifications </Text>
+                </Button>
+              </Flex> */}
               <Flex direction={"row"}>
               <Search
-                placeholder="new topic"
+                placeholder="Add Topic"
                 allowClear
-                enterButton="+"
-                size="medium"
-                buttonStyle={{ color: "blue" }}
+                enterButton={<Button style={{color: "green"}}>Add Topic</Button>}
+                size="large"
                 onSearch={onAddTopic}
               />
               </Flex>
               <Flex direction={"row"}>
               <Search
-                placeholder="input search text"
+                placeholder="Search Topic"
                 allowClear
-                enterButton="Search"
+
+                enterButton={<Button style={{color: "green"}}>Search Topics</Button>}
                 size="medium"
                 onSearch={onSearch}
               />
               </Flex>
-              {topics
-                .filter(topic => searchFilter === "" || topic.includes(searchFilter))
-                .map((topic, index) => (
-                  <Flex key={index} direction="row" onClick={() => setCurrentTopic(topic)}>
-                    <Icon as={FiAward} />
-                    <Text>{topic}</Text>
-                  </Flex>
-                ))}
+              {searchFilter !== "" && <Text>Current Search: {searchFilter}</Text>}
+              <div style={{ maxHeight: "450px", overflowY: "auto" }}>
+                {topics
+                  .filter(topic => searchFilter === "" || topic.includes(searchFilter))
+                  .map((topic, index) => (
+                    <Flex key={index} direction="row" onClick={() => setCurrentTopic(topic)} marginBottom="10px">
+                      <Icon as={FiAward} />
+                      <Text>{topic}</Text>
+                    </Flex>
+                  ))}
+              </div>
               
             </Flex>
             <Spacer />
