@@ -21,10 +21,6 @@ import { FiAward, FiBell, FiChevronLeft, FiChevronRight, FiCompass, FiHome, FiSe
 import React, { useState } from "react";
 
 import { Input } from 'antd';
-import {
-  RibbitLogo,
-} from "../Icons/Icons";
-import { SearchIcon } from "@chakra-ui/icons";
 
 const topics = [
   "Dad Jokes",
@@ -103,8 +99,6 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
           </Flex>
           <Flex direction={"column"} justifyContent={"space-around"} alignItems="center">
           <RibbitLogo />
-          <Flex direction={"column"} justifyContent={"space-around"} alignItems="center">
-          <RibbitLogo />
             <Flex direction={"column"} gap={"30px"} mt={"40px"} fontSize={"18px"}>
               {/* <Flex direction={"row"}>
                 <Button
@@ -151,8 +145,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                 placeholder="Add Topic"
                 allowClear
                 enterButton="+"
-                size="medium"
-                buttonStyle={{ color: "blue" }}
+                size={"middle"}
                 onSearch={onAddTopic}
               />
               </Flex>
