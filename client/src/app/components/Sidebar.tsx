@@ -56,8 +56,8 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
         icon={isSidebarOpen ? <FiChevronLeft /> : <FiChevronRight />}
         onClick={handleSidebarToggle}
         position="fixed"
-        top="50%"
-        left={isSidebarOpen ? "200px" : "20px"}
+        top="95%"
+        left="20px"
         transform="translateY(-50%)"
         zIndex="999" aria-label={""}      />
 
