@@ -197,6 +197,7 @@ const examplePosts = [
 
 ]
 
+
 const HomePage = () => {
   // State to store the input value
   const [postContent, setPostContent] = useState("");
@@ -321,8 +322,7 @@ const HomePage = () => {
       StarknetContract.connect(connection.account);
       const postsResponse = await StarknetContract.call("getAllPosts");
 
-      // Assuming postsResponse directly contains the array of post objects
-      const transformedPosts = postsResponse.map((post) => {
+      const transformedPosts: any[] = (postsResponse as any[]).map((post) => {
         return {
           deleted: post.deleted,
           likes: Number(post.likes),
@@ -395,7 +395,7 @@ const HomePage = () => {
             <div className="flex-1 flex justify-center items-center">
               <button
                 onSubmit={handleSubmit}
-                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-white rounded-lg font-semibold shadow"
+                className="px-6 py-3 bg-[#EC796B] hover:bg-[#EC796B] focus:outline-none focus:ring-2 focus:ring-offset-2 text-white rounded-lg font-semibold shadow"
               >
                 {address
                   ? loading
