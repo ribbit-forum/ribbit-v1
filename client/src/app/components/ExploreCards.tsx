@@ -38,7 +38,7 @@ const PostCard: React.FC<PostCardProps> = ({
       <div className="text-sm mb-2">
         Posted by: 
         <a onClick={() => setCurrentAddress(walletAddress)} className="text-[#EC796B]">
-        {" "}{walletAddress}{" "}
+        {" "}{walletAddress.slice(0,8)}{"... "}
         </a> 
         to 
         <a onClick={() => setCurrentTopic(topic)} className="text-[#EC796B]">

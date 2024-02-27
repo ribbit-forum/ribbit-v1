@@ -17,7 +17,7 @@ const examplePosts = [
   {
     "message": "🔥 Found a loophole for unlimited coffee refills at Cafe Java. Order the 'secret menu' medium roast, wink twice at the barista, and enjoy all-day caffeine! Don't tell everyone 😉.",
     "topic": "Lifehacks",
-    "date": "2024-02-25",
+    "timestamp": "2024-02-25",
     "userAddress": "0xCoffeeLover",
     "likes": 65,
     "comments": 20,
@@ -26,7 +26,7 @@ const examplePosts = [
   {
     "message": "Last minute deal alert! 🚨 75% off round-trip flights to Tokyo for the next 48 hours on SkyHigh Airlines. Just used this for a spontaneous adventure. You're welcome!",
     "topic": "Lifehacks",
-    "date": "2024-02-24",
+    "timestamp": "2024-02-24",
     "userAddress": "0xWanderlust",
     "likes": 85,
     "comments": 30,
@@ -35,7 +35,7 @@ const examplePosts = [
   {
     "message": "Insider advice: The best time to buy electronics? March & September. Stores clear out old stock for new models. Just snagged a high-end laptop for half the price!",
     "topic": "Lifehacks",
-    "date": "2024-02-23",
+    "timestamp": "2024-02-23",
     "userAddress": "0xTechGuru",
     "likes": 70,
     "comments": 22,
@@ -44,7 +44,7 @@ const examplePosts = [
   {
     "message": "Ever wonder why your pizza never comes out right at home? 🍕 Secret tip: sprinkle a bit of sugar in the sauce. It caramelizes and gives that authentic pizzeria taste. Game changer!",
     "topic": "Lifehacks",
-    "date": "2024-02-22",
+    "timestamp": "2024-02-22",
     "userAddress": "0xChefSecret",
     "likes": 90,
     "comments": 25,
@@ -53,7 +53,7 @@ const examplePosts = [
   {
     "message": "Pro tip for free upgrades: Check in exactly 24 hours before your flight. Just got bumped to first class doing this. Fly like a king on a peasant's budget!",
     "topic": "Lifehacks",
-    "date": "2024-02-21",
+    "timestamp": "2024-02-21",
     "userAddress": "0xJetSetter",
     "likes": 78,
     "comments": 18,
@@ -62,7 +62,7 @@ const examplePosts = [
     {
       "message": "Just spent the morning rescuing kittens from an abandoned lot and found them all loving homes. Remember, a little kindness goes a long way. 🐱💕 #AdoptDontShop",
       "topic": "Wholesome",
-      "date": "2024-02-20",
+      "timestamp": "2024-02-20",
       "userAddress": "0xKindSoul",
       "likes": 110,
       "comments": 45,
@@ -71,7 +71,7 @@ const examplePosts = [
     {
       "message": "Saw an elderly neighbor struggling to mow his lawn in the heat today, so I did it for him. His smile was worth every drop of sweat. Let's look out for each other. 💚",
       "topic": "Wholesome",
-      "date": "2024-02-19",
+      "timestamp": "2024-02-19",
       "userAddress": "0xHelpingHand",
       "likes": 95,
       "comments": 32,
@@ -80,7 +80,7 @@ const examplePosts = [
     {
       "message": "My little brother was feeling down about not making the soccer team, so I organized a neighborhood match for him. His laughter was the best sound ever. 🥅⚽ #FamilyFirst",
       "topic": "Wholesome",
-      "date": "2024-02-18",
+      "timestamp": "2024-02-18",
       "userAddress": "0xFamilyGoals",
       "likes": 88,
       "comments": 27,
@@ -89,7 +89,7 @@ const examplePosts = [
     {
       "message": "Found a wallet stuffed with cash at the park and tracked down the owner to return it. Seeing their relief and gratitude reminded me there's still good in the world. 🌍💖",
       "topic": "Wholesome",
-      "date": "2024-02-17",
+      "timestamp": "2024-02-17",
       "userAddress": "0xHonestAbe",
       "likes": 103,
       "comments": 39,
@@ -98,7 +98,7 @@ const examplePosts = [
     {
       "message": "Baked cookies and delivered them to local frontline workers to brighten their day. Their hard work and dedication inspire me every day. 🍪💙 #SupportOurHeroes",
       "topic": "Wholesome",
-      "date": "2024-02-16",
+      "timestamp": "2024-02-16",
       "userAddress": "0xCookieMonster",
       "likes": 120,
       "comments": 50,
@@ -107,7 +107,7 @@ const examplePosts = [
       {
         "message": "Finally hit my goal of 100 pushups in one go! 🏋️‍♂️ Three months of dedication and early mornings. Remember, it's not about the goal, but who you become along the way. #NoExcuses",
         "topic": "Milestones",
-        "date": "2024-02-15",
+        "timestamp": "2024-02-15",
         "userAddress": "0xFitnessFreak",
         "likes": 130,
         "comments": 60,
@@ -116,7 +116,7 @@ const examplePosts = [
       {
         "message": "Stood at the top of Mount Everest this morning, feeling on top of the world. 🏔 Every step was a battle, but the view from the summit was worth every challenge. #DreamBig",
         "topic": "Milestones",
-        "date": "2024-02-14",
+        "timestamp": "2024-02-14",
         "userAddress": "0xAdventurer",
         "likes": 145,
         "comments": 75,
@@ -125,7 +125,7 @@ const examplePosts = [
       {
         "message": "Ran my first marathon today in honor of my mom, a cancer survivor. 🏃‍♂️💖 Every mile was for those fighting the battle. Together, we can beat cancer. #RunForACause",
         "topic": "Milestones",
-        "date": "2024-02-13",
+        "timestamp": "2024-02-13",
         "userAddress": "0xMarathoner",
         "likes": 160,
         "comments": 85,
@@ -134,7 +134,7 @@ const examplePosts = [
       {
         "message": "100 days of coding challenge completed! Went from zero to developing my first app. The journey has just begun. #CodeNewbie to #CodeNinja 🖥💪",
         "topic": "Milestones",
-        "date": "2024-02-12",
+        "timestamp": "2024-02-12",
         "userAddress": "0xCodeWarrior",
         "likes": 120,
         "comments": 64,
@@ -143,7 +143,7 @@ const examplePosts = [
       {
         "message": "Transformed an empty lot into a community garden, feeding dozens of families. 🌱🍅 It started as a small project but turned into a neighborhood mission. #GreenThumbCommunity",
         "topic": "Milestones",
-        "date": "2024-02-11",
+        "timestamp": "2024-02-11",
         "userAddress": "0xUrbanGardener",
         "likes": 110,
         "comments": 52,
@@ -152,7 +152,7 @@ const examplePosts = [
           {
               "message": "That Edison guy is kinda cute, I won't lie. Saw him debugging like a pro. #TechCrush",
               "topic": "Starknet",
-              "date": "2024-02-24",
+              "timestamp": "2024-02-24",
               "userAddress": "0xSecretAdmirer",
               "likes": 43,
               "comments": 7,
@@ -161,7 +161,7 @@ const examplePosts = [
           {
               "message": "Shoutout to Pierre, literally the only reason my Cairo smart contract works. Man's a wizard! #CairoHero",
               "topic": "Starknet",
-              "date": "2024-02-24",
+              "timestamp": "2024-02-24",
               "userAddress": "0xGratefulDev",
               "likes": 56,
               "comments": 12,
@@ -170,7 +170,7 @@ const examplePosts = [
           {
               "message": "Denver transit is free for anyone under 19!! Great way to explore the city on a budget. #TravelHack",
               "topic": "Starknet",
-              "date": "2024-02-23",
+              "timestamp": "2024-02-23",
               "userAddress": "0xExplorer",
               "likes": 67,
               "comments": 15,
@@ -179,7 +179,7 @@ const examplePosts = [
           {
               "message": "There's a train from the airport to Union Station for $10 so you don't have to buy an expensive Uber. #SmartTravel",
               "topic": "Starknet",
-              "date": "2024-02-23",
+              "timestamp": "2024-02-23",
               "userAddress": "0xSavvyTraveler",
               "likes": 75,
               "comments": 22,
@@ -188,7 +188,7 @@ const examplePosts = [
           {
               "message": "There's a free mall ride that takes you from Union to the hotel. Handy for last-minute shopping or just getting around. #FreeRide",
               "topic": "Starknet",
-              "date": "2024-02-24",
+              "timestamp": "2024-02-24",
               "userAddress": "0xUrbanNavigator",
               "likes": 82,
               "comments": 29,
@@ -439,10 +439,10 @@ const HomePage = () => {
             </div>
           </div>
         </form>
-        <button onClick={async () => {
+        {/* <button onClick={async () => {
           const url = await shortenURL(imageUrlInput);
           alert(url);
-        }}>short url</button>
+        }}>short url</button> */}
 
         <hr className="w-full h-1 bg-[#D9D9D9]" />
 
