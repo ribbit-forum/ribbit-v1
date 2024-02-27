@@ -27,7 +27,7 @@ const examplePosts = [
   {
     "postId": 2,
     "content": "Last minute deal alert! 🚨 75% off round-trip flights to Tokyo for the next 48 hours on SkyHigh Airlines. Just used this for a spontaneous adventure. You're welcome!",
-    "topic": "Last Minute Deals",
+    "topic": "Lifehacks",
     "date": "2024-02-24",
     "walletAddress": "0xWanderlust",
     "likes": 85,
@@ -37,7 +37,7 @@ const examplePosts = [
   {
     "postId": 3,
     "content": "Insider advice: The best time to buy electronics? March & September. Stores clear out old stock for new models. Just snagged a high-end laptop for half the price!",
-    "topic": "Insider Advice",
+    "topic": "Lifehacks",
     "date": "2024-02-23",
     "walletAddress": "0xTechGuru",
     "likes": 70,
@@ -47,7 +47,7 @@ const examplePosts = [
   {
     "postId": 4,
     "content": "Ever wonder why your pizza never comes out right at home? 🍕 Secret tip: sprinkle a bit of sugar in the sauce. It caramelizes and gives that authentic pizzeria taste. Game changer!",
-    "topic": "Cooking Hacks",
+    "topic": "Lifehacks",
     "date": "2024-02-22",
     "walletAddress": "0xChefSecret",
     "likes": 90,
@@ -57,7 +57,7 @@ const examplePosts = [
   {
     "postId": 5,
     "content": "Pro tip for free upgrades: Check in exactly 24 hours before your flight. Just got bumped to first class doing this. Fly like a king on a peasant's budget!",
-    "topic": "Travel Hacks",
+    "topic": "Lifehacks",
     "date": "2024-02-21",
     "walletAddress": "0xJetSetter",
     "likes": 78,
@@ -67,7 +67,7 @@ const examplePosts = [
     {
       "postId": 6,
       "content": "Just spent the morning rescuing kittens from an abandoned lot and found them all loving homes. Remember, a little kindness goes a long way. 🐱💕 #AdoptDontShop",
-      "topic": "Animal Rescue",
+      "topic": "Wholesome",
       "date": "2024-02-20",
       "walletAddress": "0xKindSoul",
       "likes": 110,
@@ -77,7 +77,7 @@ const examplePosts = [
     {
       "postId": 7,
       "content": "Saw an elderly neighbor struggling to mow his lawn in the heat today, so I did it for him. His smile was worth every drop of sweat. Let's look out for each other. 💚",
-      "topic": "Community Help",
+      "topic": "Wholesome",
       "date": "2024-02-19",
       "walletAddress": "0xHelpingHand",
       "likes": 95,
@@ -87,7 +87,7 @@ const examplePosts = [
     {
       "postId": 8,
       "content": "My little brother was feeling down about not making the soccer team, so I organized a neighborhood match for him. His laughter was the best sound ever. 🥅⚽ #FamilyFirst",
-      "topic": "Sibling Support",
+      "topic": "Wholesome",
       "date": "2024-02-18",
       "walletAddress": "0xFamilyGoals",
       "likes": 88,
@@ -97,7 +97,7 @@ const examplePosts = [
     {
       "postId": 9,
       "content": "Found a wallet stuffed with cash at the park and tracked down the owner to return it. Seeing their relief and gratitude reminded me there's still good in the world. 🌍💖",
-      "topic": "Acts of Honesty",
+      "topic": "Wholesome",
       "date": "2024-02-17",
       "walletAddress": "0xHonestAbe",
       "likes": 103,
@@ -107,7 +107,7 @@ const examplePosts = [
     {
       "postId": 10,
       "content": "Baked cookies and delivered them to local frontline workers to brighten their day. Their hard work and dedication inspire me every day. 🍪💙 #SupportOurHeroes",
-      "topic": "Gratitude",
+      "topic": "Wholesome",
       "date": "2024-02-16",
       "walletAddress": "0xCookieMonster",
       "likes": 120,
@@ -117,7 +117,7 @@ const examplePosts = [
       {
         "postId": 11,
         "content": "Finally hit my goal of 100 pushups in one go! 🏋️‍♂️ Three months of dedication and early mornings. Remember, it's not about the goal, but who you become along the way. #NoExcuses",
-        "topic": "Fitness Milestones",
+        "topic": "Milestones",
         "date": "2024-02-15",
         "walletAddress": "0xFitnessFreak",
         "likes": 130,
@@ -127,7 +127,7 @@ const examplePosts = [
       {
         "postId": 12,
         "content": "Stood at the top of Mount Everest this morning, feeling on top of the world. 🏔 Every step was a battle, but the view from the summit was worth every challenge. #DreamBig",
-        "topic": "Adventure Triumphs",
+        "topic": "Milestones",
         "date": "2024-02-14",
         "walletAddress": "0xAdventurer",
         "likes": 145,
@@ -137,7 +137,7 @@ const examplePosts = [
       {
         "postId": 13,
         "content": "Ran my first marathon today in honor of my mom, a cancer survivor. 🏃‍♂️💖 Every mile was for those fighting the battle. Together, we can beat cancer. #RunForACause",
-        "topic": "Charity Challenges",
+        "topic": "Milestones",
         "date": "2024-02-13",
         "walletAddress": "0xMarathoner",
         "likes": 160,
@@ -147,7 +147,7 @@ const examplePosts = [
       {
         "postId": 14,
         "content": "100 days of coding challenge completed! Went from zero to developing my first app. The journey has just begun. #CodeNewbie to #CodeNinja 🖥💪",
-        "topic": "Learning Journeys",
+        "topic": "Milestones",
         "date": "2024-02-12",
         "walletAddress": "0xCodeWarrior",
         "likes": 120,
@@ -157,7 +157,7 @@ const examplePosts = [
       {
         "postId": 15,
         "content": "Transformed an empty lot into a community garden, feeding dozens of families. 🌱🍅 It started as a small project but turned into a neighborhood mission. #GreenThumbCommunity",
-        "topic": "Community Initiatives",
+        "topic": "Milestones",
         "date": "2024-02-11",
         "walletAddress": "0xUrbanGardener",
         "likes": 110,

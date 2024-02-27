@@ -44,20 +44,13 @@ type SidebarProps = {
 
 const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
   const [topics, setTopics] = useState([
-    "All",
-    "Dad Jokes",
-    "Tech Puns",
-    "Puns",
-    "Tech Life",
-    "Shower Thoughts",
-    "Space Dogs",
-    "Food Jokes",
-    "Weather Puns",
-    "Gen Z Trends",
-    "Late Night Thoughts"
+    "🐸 All",
+    "🥷 Lifehacks",
+    "🐱 Wholesome",
+    "💪 Milestones",
   ]); // ["topic1", "topic2"
   const [searchFilter, setSearchFilter] = useState(""); // ["topic1", "topic2"
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const onSearch = (value: React.SetStateAction<string>) => {
     console.log("Search: ", value);
     setSearchFilter(value);
@@ -87,7 +80,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
       {isSidebarOpen && (
         <Box
           bg="white"
-          w={"500px"}
+          w={"400px"}
           p={5}
           shadow="md"
           borderRadius="md"
@@ -166,8 +159,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                   .filter(topic => searchFilter === "" || topic.includes(searchFilter))
                   .map((topic, index) => (
                     <Flex key={index} direction="row" onClick={() => setCurrentTopic(topic)} marginBottom="10px">
-                      <Icon as={FiAward} />
-                      <Text>{topic}</Text>
+                      <Text style={{marginLeft: "10px"}}>{topic}</Text>
                     </Flex>
                   ))}
               </div>
