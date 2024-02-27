@@ -53,7 +53,7 @@ const PostCard: React.FC<PostCardProps> = ({
       <div className="flex items-center justify-between mt-4">
       {/* <span className="text-sm font-semibold">{likes}</span> */}
       <span className="text-sm font-semibold text-[#4D4DB2]">{finality}</span>
-        <span className="text-sm font-semibold">{comments} Comments</span>
+        <span className="text-sm font-semibold">{likes} Likes</span>
       </div>
     </div>
   );
