@@ -89,7 +89,7 @@ const Sidebar = ({ posts, setCurrentTopic }: SidebarProps) => {
           // padding={48}
           paddingLeft={20}
         >
-          <Flex direction={"row"} gap={"10px"}>
+          <Flex direction={"row"} gap={"5px"}>
           </Flex>
           <Flex direction={"column"} justifyContent={"space-around"} alignItems="center">
             <div style={{marginLeft: "100px", marginRight: "100px"}}><RibbitLogo /></div>
@@ -113,14 +113,22 @@ const Sidebar = ({ posts, setCurrentTopic }: SidebarProps) => {
                 onSearch={onSearch}
               />
               </Flex>
-              <Flex><Text>🐸 Your Subribbits: </Text></Flex>
               {searchFilter !== "" && <Text>Current Search: {searchFilter}</Text>}
-              <div style={{ maxHeight: "450px", overflowY: "auto" }}>
+              <Text>🐸 Your Subribbits: </Text>
+              <div style={{ maxHeight: "400px", overflowY: "auto" }}>
                 {topics
                   .filter(topic => searchFilter === "" || topic.toLowerCase().includes(searchFilter.toLowerCase()))
                   .map((topic, index) => (
-                    <Flex key={index} direction="row" onClick={() => setCurrentTopic(topic)} marginBottom="10px">
-                        <Text style={{marginLeft: "10px"}}>{topic in topicEmojiMap ? topicEmojiMap[topic] : "🐸"} {" " + topic}</Text>
+                    <Flex
+                      key={index}
+                      direction="row"
+                      onClick={() => setCurrentTopic(topic)}
+                      marginBottom="10px"
+                      style={{ border: "1px solid gray", padding: "5px", borderRadius: "15px", cursor: "pointer"}}
+                    >
+                      <Text style={{ marginLeft: "10px" }}>
+                        {topic in topicEmojiMap ? topicEmojiMap[topic] : "🐸"} {topic}
+                      </Text>
                     </Flex>
                   ))}
               </div>
