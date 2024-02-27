@@ -15,7 +15,7 @@ import {
   Spacer
 } from "@chakra-ui/react";
 import { FiAward, FiBell, FiChevronLeft, FiChevronRight, FiCompass, FiHome, FiSettings } from "react-icons/fi";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Input } from 'antd';
 import {
@@ -26,10 +26,13 @@ const { Search } = Input;
 
 type SidebarProps = {
   // If topic is a string
+  posts: any[];
   setCurrentTopic: (topic: string) => void;
 };
 
-const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
+const Sidebar = ({ posts, setCurrentTopic }: SidebarProps) => {
+
+  
   const topicEmojiMap: Record<string, string> = {
     "All": "🐸",
     "Lifehacks": "🥷",
@@ -38,16 +41,15 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
     "Starknet": "🌐",
   };
 
-  const [topics, setTopics] = useState([
-    "All",
-    "Lifehacks",
-    "Wholesome",
-    "Milestones",
-    "Starknet",
-  ]);
+  const [topics, setTopics] = useState<string[]>([]);
 
   const [searchFilter, setSearchFilter] = useState(""); // ["topic1", "topic2"
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  useEffect(() => {
+    const allTopics = [...new Set(posts.map((post) => post.topic))];
+    const uniqueTopics = [...new Set([...topics, ...allTopics])]
+    setTopics(uniqueTopics);
+  }, [posts]);
   const onSearch = (value: React.SetStateAction<string>) => {
     console.log("Search: ", value);
     setSearchFilter(value);

@@ -379,7 +379,7 @@ const HomePage = () => {
 
   return (
     <Box className="flex h-screen bg-gray-100 overflow-auto">
-      <Sidebar setCurrentTopic={setCurrentTopic} />
+      <Sidebar posts={posts} setCurrentTopic={setCurrentTopic} />
       <Box className="flex-grow flex flex-col gap-5 px-10 pt-2 overflow-auto">
         <Text
           className="text-5xl font-bold mt-8 text-left color"
