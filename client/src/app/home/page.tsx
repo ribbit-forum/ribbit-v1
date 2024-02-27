@@ -1,18 +1,18 @@
 "use client";
 
-import { Box, Button, Text, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { Contract, RpcProvider } from "starknet";
 import { connect, disconnect } from "starknetkit";
 import { useEffect, useState } from "react";
 
 import { ConnectedStarknetWindowObject } from "starknetkit";
 import CreatePostComponent from "../components/CreatePostComponent";
-
 import GoodEvening from "../components/GoodEvening";
 import PostCard from "../components/ExploreCards";
 import Sidebar from "../components/Sidebar";
 import Trending from "../components/Trending";
 import { useToast } from '@chakra-ui/react'
+
 const examplePosts = [
   {
     "postId": 1,
@@ -163,8 +163,60 @@ const examplePosts = [
         "likes": 110,
         "comments": 52,
         "imageUrl": "https://media0.giphy.com/media/3oz8xAFtqoOUUrsh7W/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
-      }
-        
+      },
+          {
+              "postId": 16,
+              "content": "That Edison guy is kinda cute, I won't lie. Saw him debugging like a pro. #TechCrush",
+              "topic": "Starknet",
+              "date": "2024-02-24",
+              "walletAddress": "0xSecretAdmirer",
+              "likes": 43,
+              "comments": 7,
+              "imageUrl": "https://media4.giphy.com/media/l41lUJ1YoZB1lHVPG/giphy.gif"
+          },
+          {
+              "postId": 17,
+              "content": "Shoutout to Pierre, literally the only reason my Cairo smart contract works. Man's a wizard! #CairoHero",
+              "topic": "Starknet",
+              "date": "2024-02-24",
+              "walletAddress": "0xGratefulDev",
+              "likes": 56,
+              "comments": 12,
+              "imageUrl": "https://media1.giphy.com/media/3ohs4Bkcs4eKd51dqo/giphy.gif"
+          },
+          {
+              "postId": 18,
+              "content": "Denver transit is free for anyone under 19!! Great way to explore the city on a budget. #TravelHack",
+              "topic": "Starknet",
+              "date": "2024-02-23",
+              "walletAddress": "0xExplorer",
+              "likes": 67,
+              "comments": 15,
+              "imageUrl": "https://media2.giphy.com/media/QMHoU66sBXqqLqYvGO/giphy.gif"
+          },
+          {
+              "postId": 19,
+              "content": "There's a train from the airport to Union Station for $10 so you don't have to buy an expensive Uber. #SmartTravel",
+              "topic": "Starknet",
+              "date": "2024-02-23",
+              "walletAddress": "0xSavvyTraveler",
+              "likes": 75,
+              "comments": 22,
+              "imageUrl": "https://media3.giphy.com/media/l0Iy5fjHyedk9aDGU/giphy.gif"
+          },
+          {
+              "postId": 20,
+              "content": "There's a free mall ride that takes you from Union to the hotel. Handy for last-minute shopping or just getting around. #FreeRide",
+              "topic": "Starknet",
+              "date": "2024-02-24",
+              "walletAddress": "0xUrbanNavigator",
+              "likes": 82,
+              "comments": 29,
+              "imageUrl": "https://media0.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif"
+          }
+      
+      
+       
 ]
 
 
