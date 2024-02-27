@@ -38,25 +38,27 @@ const topics = [
 const { Search } = Input;
 
 type SidebarProps = {
-  setCurrentTopic: (arg0: string) => void;
+  // If topic is a string
+  setCurrentTopic: (topic: string) => void;
 };
 
 const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
+  const topicEmojiMap = {
+    "All": "🐸",
+    "Lifehacks": "🥷",
+    "Wholesome": "🐱",
+    "Milestones": "💪",
+  };
+
   const [topics, setTopics] = useState([
     "All",
-    "Dad Jokes",
-    "Tech Puns",
-    "Puns",
-    "Tech Life",
-    "Shower Thoughts",
-    "Space Dogs",
-    "Food Jokes",
-    "Weather Puns",
-    "Gen Z Trends",
-    "Late Night Thoughts"
+    "Lifehacks",
+    "Wholesome",
+    "Milestones",
   ]);
-  const [searchFilter, setSearchFilter] = useState("");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const [searchFilter, setSearchFilter] = useState(""); // ["topic1", "topic2"
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const onSearch = (value: React.SetStateAction<string>) => {
     console.log("Search: ", value);
     setSearchFilter(value);
@@ -106,7 +108,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
               <Search
                 placeholder="Add Topic"
                 allowClear
-                enterButton="+"
+                enterButton="➕"
                 size={"middle"}
                 onSearch={onAddTopic}
               />
@@ -115,19 +117,19 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
               <Search
                 placeholder="Search Topic"
                 allowClear
-                enterButton="Search"
+                enterButton="🔍"
                 size="large"
                 onSearch={onSearch}
               />
               </Flex>
+              <Flex><Text>🐸 Your Subribbits: </Text></Flex>
               {searchFilter !== "" && <Text>Current Search: {searchFilter}</Text>}
               <div style={{ maxHeight: "450px", overflowY: "auto" }}>
                 {topics
-                  .filter(topic => searchFilter === "" || topic.includes(searchFilter))
+                  .filter(topic => searchFilter === "" || topic.toLowerCase().includes(searchFilter.toLowerCase()))
                   .map((topic, index) => (
                     <Flex key={index} direction="row" onClick={() => setCurrentTopic(topic)} marginBottom="10px">
-                      <Icon as={FiAward} />
-                      <Text>{topic}</Text>
+                      <Text style={{marginLeft: "10px"}}>{topicEmojiMap[topic] + " " + topic}</Text>
                     </Flex>
                   ))}
               </div>
