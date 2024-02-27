@@ -447,6 +447,72 @@ const HomePage = () => {
     }
   };
 
+  const onLike = async (index: number) => {
+    try {
+
+      const connection = await connect();
+
+      if (connection && connection.isConnected) {
+        setConnection(connection);
+        setProvider(connection.account);
+        setAddress(connection.selectedAddress);
+  
+        const deployedStarknetContract =
+        "0x02336c8825474568ea5d4e28b91acb4bfbaa7cc86b7e7208ffb22704ff375cd5";
+
+      const starknetABI = await connection.provider.getClassAt(
+        deployedStarknetContract
+      );
+      const StarknetContract = new Contract(
+        starknetABI.abi,
+        deployedStarknetContract,
+        connection.account
+      );
+      StarknetContract.connect(connection.account);
+      const res = await StarknetContract.addLike(index);
+
+      window.alert("Like added: "+res)
+
+      await fetchFeedData();
+      }
+    } catch (error) {
+      console.error("Error adding like:", error);
+    }
+  }
+
+
+  const onTip = async ( index: number, amount: number) => {
+    try {
+      const connection = await connect();
+
+      if (connection && connection.isConnected) {
+        setConnection(connection);
+        setProvider(connection.account);
+        setAddress(connection.selectedAddress);
+  
+        const deployedStarknetContract =
+        "0x02336c8825474568ea5d4e28b91acb4bfbaa7cc86b7e7208ffb22704ff375cd5";
+
+      const starknetABI = await connection.provider.getClassAt(
+        deployedStarknetContract
+      );
+      const StarknetContract = new Contract(
+        starknetABI.abi,
+        deployedStarknetContract,
+        connection.account
+      );
+      StarknetContract.connect(connection.account);
+      const res = await StarknetContract.addTip(index, amount);
+      console.log("Tip added:", res);
+      // Refresh the posts after a tip is added
+      await fetchFeedData();
+      }
+    } catch (error) {
+      console.error("Error adding tip:", error);
+    }
+  
+}
+
   const fetchFeedData = async () => {
     const connection = await connect();
     if (connection && connection.isConnected) {
@@ -643,6 +709,8 @@ const HomePage = () => {
                 content={post.message}
                 topic={post.topic}
                 date={post.timestamp}
+                onLike={() => onLike(Number(index))}
+                onTip={() => onTip(Number(index), 1)}
                 walletAddress={post.userAddress}
                 comments={0}
                 likes={post.likes.toString()}
