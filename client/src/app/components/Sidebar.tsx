@@ -38,7 +38,7 @@ const topics = [
 const { Search } = Input;
 
 type SidebarProps = {
-  setCurrentTopic: (arg0: never) => void;
+  setCurrentTopic: (arg0: string) => void;
 };
 
 const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
@@ -54,8 +54,8 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
     "Weather Puns",
     "Gen Z Trends",
     "Late Night Thoughts"
-  ]); // ["topic1", "topic2"
-  const [searchFilter, setSearchFilter] = useState(""); // ["topic1", "topic2"
+  ]);
+  const [searchFilter, setSearchFilter] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const onSearch = (value: React.SetStateAction<string>) => {
     console.log("Search: ", value);
@@ -78,22 +78,23 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
         onClick={handleSidebarToggle}
         position="fixed"
         bottom="5%"
-        left={isSidebarOpen ? "48" : "48px"}
+        left={isSidebarOpen ? "48px" : "48px"}
         top="95%"
         transform="translateY(-50%)"
+        color={'black'}
         zIndex="999" aria-label={""}/>
 
       {isSidebarOpen && (
         <Box
           bg="white"
-          w={"500px"}
+          maxWidth={"500px"}
           p={5}
           shadow="md"
           borderRadius="md"
           h={"calc(100vh)"}
           textColor={"black"}
-          padding={48}
-          //   paddingRight={65}
+          // padding={48}
+          paddingLeft={20}
         >
           <Flex direction={"row"} gap={"10px"}>
           </Flex>
@@ -101,46 +102,6 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
             <div style={{marginLeft: "100px", marginRight: "100px"}}><RibbitLogo /></div>
           
             <Flex direction={"column"} gap={"30px"} mt={"40px"} fontSize={"18px"}>
-              {/* <Flex direction={"row"}>
-                <Button
-                  gap={"20px"}
-                  justifyContent={"left"}
-                  marginLeft={5}
-                  _hover={{ background: "#D9D9D9", padding: "10px" }}
-                  _focus={{ outline: "none" }}
-                  className="rounded-xl"
-                  pr={2}
-                  padding="10px"
-                  padding="10px"
-                >
-                  <Text>Home </Text>
-                </Button>
-              </Flex> */}
-
-              {/* <Flex direction={"row"}>
-                <Button
-                  gap={"20px"}
-                  justifyContent={"left"}
-                  marginLeft={15}
-                  _hover={{ background: "#D9D9D9" }}
-                  className="rounded-xl"
-                >
-                  <ExploreIcon />
-                  <Text>Explore </Text>
-                </Button>
-              </Flex>
-              <Flex direction={"row"}>
-                <Button
-                  gap={"20px"}
-                  justifyContent={"left"}
-                  marginLeft={15}
-                  _hover={{ background: "#D9D9D9" }}
-                  className="rounded-xl"
-                >
-                  <NotificationIcon />
-                  <Text>Notifications </Text>
-                </Button>
-              </Flex> */}
               <Flex direction={"row"}>
               <Search
                 placeholder="Add Topic"
@@ -172,7 +133,6 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
               </div>
               
             </Flex>
-            <Spacer />
             
           </Flex>
         </Box>
