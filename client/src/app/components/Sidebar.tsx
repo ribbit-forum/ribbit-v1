@@ -95,7 +95,7 @@ const Sidebar = ({ posts, setCurrentTopic }: SidebarProps) => {
           <Flex direction={"row"} gap={"5px"}>
           </Flex>
           <Flex direction={"column"} justifyContent={"space-around"} alignItems="center">
-            <div style={{marginLeft: "100px", marginRight: "100px"}}><RibbitLogo /></div>
+            <div style={{marginLeft: "100px", marginRight: "100px", marginTop: "30px"}}><RibbitLogo /></div>
           
             <Flex direction={"column"} gap={"30px"} mt={"40px"} fontSize={"18px"}>
               <Flex direction={"row"}>
