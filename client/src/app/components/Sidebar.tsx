@@ -78,7 +78,7 @@ const Sidebar = ({ posts, setCurrentTopic }: SidebarProps) => {
             justifyContent="center" // Centers the icon horizontally
             p={1} // Adjust padding to control the size of the circle around the icon
           >
-            {isSidebarOpen ? <ChevronLeft size={24} /> : <ChevronRight size={24} />}
+            {isSidebarOpen ? <ChevronLeft /> : <ChevronRight />}
           </Box>
         }
         bg="white"
