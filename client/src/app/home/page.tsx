@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { Contract, RpcProvider } from "starknet";
+import { Contract, RpcProvider, shortString } from "starknet";
 import { connect, disconnect } from "starknetkit";
 import { useEffect, useState } from "react";
 
@@ -314,26 +314,24 @@ const HomePage = () => {
   };
 
   const fetchFeedData = async () => {
-    try {
-      const response = await fetch("http://127.0.0.1:5000/feed", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user_wallet_address: address }), // assuming 'address' is the user's wallet address
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setPosts(data); // Update the posts state with the fetched data
-      } else {
-        console.error("Failed to fetch feed data");
+    const connection = await connect();
+    if (connection && connection.isConnected) {
+      const deployedStarknetContract = "0x007c81cd5cea645ac13f859ccdbb26c7de4df523ecdf7fef12d978c24cfa56e0";
+      const starknetABI = await connection.provider.getClassAt(deployedStarknetContract);
+      if (!starknetABI) {
+        throw new Error("ABI not found.");
       }
-    } catch (error) {
-      console.error("Error fetching feed data:", error);
+      const StarknetContract = new Contract(starknetABI.abi, deployedStarknetContract, connection.account);
+      StarknetContract.connect(connection.account);
+      const posts = await StarknetContract.call("getAllPosts");
+
+      // console.log(shortString.decodeShortString(posts[0].message));
+      
+      
+    } else {
+      window.alert("Not connected to Starknet");
     }
   };
-
   useEffect(() => {
     fetchFeedData();
   }, []);
