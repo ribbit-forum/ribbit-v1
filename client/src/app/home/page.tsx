@@ -281,7 +281,7 @@ const HomePage = () => {
   const [ipfsUploaded, setIpfsUploaded] = useState<boolean>(false);
   const [firstHalfCID, setFirstCID] = useState<string>('')
   const [secondHalfCID, setSecondCID] = useState<string>('')
-
+  const [totalPosts, setTotalPosts] = useState<number>()
 
   const [theConnection, setConnection] =
     useState<ConnectedStarknetWindowObject>();
@@ -457,6 +457,11 @@ const HomePage = () => {
         setProvider(connection.account);
         setAddress(connection.selectedAddress);
   
+        if(totalPosts as number < index){
+          window.alert('Cannot like computer generated post!')
+          return
+        }
+
         const deployedStarknetContract =
         "0x02336c8825474568ea5d4e28b91acb4bfbaa7cc86b7e7208ffb22704ff375cd5";
 
@@ -492,6 +497,12 @@ const HomePage = () => {
   
         const deployedStarknetContract =
         "0x02336c8825474568ea5d4e28b91acb4bfbaa7cc86b7e7208ffb22704ff375cd5";
+
+        if(totalPosts as number < index){
+          window.alert('Cannot tip computer generated post!')
+
+          return
+        }
 
       const starknetABI = await connection.provider.getClassAt(
         deployedStarknetContract
@@ -555,6 +566,7 @@ const HomePage = () => {
       });
 
       console.log("transform", transformedPosts);
+      setTotalPosts(transformedPosts.length)
 
       setPosts([...transformedPosts, ...examplePosts]);
     } else {
@@ -591,7 +603,6 @@ const HomePage = () => {
               value={imageUrlInput}
               onChange={(e) => setImageUrlInput(e.target.value)}
               placeholder="Image URL"
-              maxLength={31}
               className="
       w-full
       p-4
