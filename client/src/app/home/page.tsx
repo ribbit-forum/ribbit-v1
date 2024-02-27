@@ -197,6 +197,36 @@ const examplePosts = [
 
 ]
 
+async function shortenURL(url: string) {
+  const accessToken = '4b62e5620cff728b9bb5f088bbc9fe8e36bc939b'; // Replace with your Bitly access token
+  const bitlyAPI = 'https://api-ssl.bitly.com/v4/shorten';
+
+  try {
+    const response = await fetch(bitlyAPI, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        long_url: url,
+        domain: 'bit.ly',
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data.link);
+    return data.link; // This is your shortened URL
+  } catch (error) {
+    console.error('Error shortening URL:', error);
+    return null;
+  }
+}
+
 
 const HomePage = () => {
   // State to store the input value
@@ -268,9 +298,12 @@ const HomePage = () => {
       );
       StarknetContract.connect(connection.account);
 
+      const shortUrl = await shortenURL(imageUrlInput);
+
       console.log(
         connection.selectedAddress,
         postContent,
+        shortUrl,
         fullDate,
         currentTopic
       );
@@ -406,6 +439,10 @@ const HomePage = () => {
             </div>
           </div>
         </form>
+        <button onClick={async () => {
+          const url = await shortenURL(imageUrlInput);
+          alert(url);
+        }}>short url</button>
 
         <hr className="w-full h-1 bg-[#D9D9D9]" />
 
