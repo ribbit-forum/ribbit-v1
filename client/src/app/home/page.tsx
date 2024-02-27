@@ -15,7 +15,7 @@ import { useToast } from "@chakra-ui/react";
 
 const examplePosts = [
   {
-    "content": "🔥 Found a loophole for unlimited coffee refills at Cafe Java. Order the 'secret menu' medium roast, wink twice at the barista, and enjoy all-day caffeine! Don't tell everyone 😉.",
+    "message": "🔥 Found a loophole for unlimited coffee refills at Cafe Java. Order the 'secret menu' medium roast, wink twice at the barista, and enjoy all-day caffeine! Don't tell everyone 😉.",
     "topic": "Lifehacks",
     "date": "2024-02-25",
     "userAddress": "0xCoffeeLover",
@@ -24,7 +24,7 @@ const examplePosts = [
     "imageUrl": "https://media0.giphy.com/media/26BRrSvJUa0crqw4E/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
   },
   {
-    "content": "Last minute deal alert! 🚨 75% off round-trip flights to Tokyo for the next 48 hours on SkyHigh Airlines. Just used this for a spontaneous adventure. You're welcome!",
+    "message": "Last minute deal alert! 🚨 75% off round-trip flights to Tokyo for the next 48 hours on SkyHigh Airlines. Just used this for a spontaneous adventure. You're welcome!",
     "topic": "Lifehacks",
     "date": "2024-02-24",
     "userAddress": "0xWanderlust",
@@ -33,7 +33,7 @@ const examplePosts = [
     "imageUrl": "https://media0.giphy.com/media/l3vR9O3vpOCDRo8rC/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
   },
   {
-    "content": "Insider advice: The best time to buy electronics? March & September. Stores clear out old stock for new models. Just snagged a high-end laptop for half the price!",
+    "message": "Insider advice: The best time to buy electronics? March & September. Stores clear out old stock for new models. Just snagged a high-end laptop for half the price!",
     "topic": "Lifehacks",
     "date": "2024-02-23",
     "userAddress": "0xTechGuru",
@@ -42,7 +42,7 @@ const examplePosts = [
     "imageUrl": "https://media0.giphy.com/media/xT0xeJpnrWC4XWblEk/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
   },
   {
-    "content": "Ever wonder why your pizza never comes out right at home? 🍕 Secret tip: sprinkle a bit of sugar in the sauce. It caramelizes and gives that authentic pizzeria taste. Game changer!",
+    "message": "Ever wonder why your pizza never comes out right at home? 🍕 Secret tip: sprinkle a bit of sugar in the sauce. It caramelizes and gives that authentic pizzeria taste. Game changer!",
     "topic": "Lifehacks",
     "date": "2024-02-22",
     "userAddress": "0xChefSecret",
@@ -51,7 +51,7 @@ const examplePosts = [
     "imageUrl": "https://media0.giphy.com/media/3ohzdIuqJoo8QdKlnW/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
   },
   {
-    "content": "Pro tip for free upgrades: Check in exactly 24 hours before your flight. Just got bumped to first class doing this. Fly like a king on a peasant's budget!",
+    "message": "Pro tip for free upgrades: Check in exactly 24 hours before your flight. Just got bumped to first class doing this. Fly like a king on a peasant's budget!",
     "topic": "Lifehacks",
     "date": "2024-02-21",
     "userAddress": "0xJetSetter",
@@ -60,7 +60,7 @@ const examplePosts = [
     "imageUrl": "https://media0.giphy.com/media/26gssIytJvy1b1Pxx/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
   },
     {
-      "content": "Just spent the morning rescuing kittens from an abandoned lot and found them all loving homes. Remember, a little kindness goes a long way. 🐱💕 #AdoptDontShop",
+      "message": "Just spent the morning rescuing kittens from an abandoned lot and found them all loving homes. Remember, a little kindness goes a long way. 🐱💕 #AdoptDontShop",
       "topic": "Wholesome",
       "date": "2024-02-20",
       "userAddress": "0xKindSoul",
@@ -69,7 +69,7 @@ const examplePosts = [
       "imageUrl": "https://media0.giphy.com/media/11s7Ke7jcNxCHS/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
     },
     {
-      "content": "Saw an elderly neighbor struggling to mow his lawn in the heat today, so I did it for him. His smile was worth every drop of sweat. Let's look out for each other. 💚",
+      "message": "Saw an elderly neighbor struggling to mow his lawn in the heat today, so I did it for him. His smile was worth every drop of sweat. Let's look out for each other. 💚",
       "topic": "Wholesome",
       "date": "2024-02-19",
       "userAddress": "0xHelpingHand",
@@ -78,7 +78,7 @@ const examplePosts = [
       "imageUrl": "https://media0.giphy.com/media/26AHAw0aMmWwRI4Hm/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
     },
     {
-      "content": "My little brother was feeling down about not making the soccer team, so I organized a neighborhood match for him. His laughter was the best sound ever. 🥅⚽ #FamilyFirst",
+      "message": "My little brother was feeling down about not making the soccer team, so I organized a neighborhood match for him. His laughter was the best sound ever. 🥅⚽ #FamilyFirst",
       "topic": "Wholesome",
       "date": "2024-02-18",
       "userAddress": "0xFamilyGoals",
@@ -87,7 +87,7 @@ const examplePosts = [
       "imageUrl": "https://media0.giphy.com/media/l0HlE56oAxpngfnWM/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
     },
     {
-      "content": "Found a wallet stuffed with cash at the park and tracked down the owner to return it. Seeing their relief and gratitude reminded me there's still good in the world. 🌍💖",
+      "message": "Found a wallet stuffed with cash at the park and tracked down the owner to return it. Seeing their relief and gratitude reminded me there's still good in the world. 🌍💖",
       "topic": "Wholesome",
       "date": "2024-02-17",
       "userAddress": "0xHonestAbe",
@@ -96,7 +96,7 @@ const examplePosts = [
       "imageUrl": "https://media0.giphy.com/media/xT39D7ubkIUIrgX7JS/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
     },
     {
-      "content": "Baked cookies and delivered them to local frontline workers to brighten their day. Their hard work and dedication inspire me every day. 🍪💙 #SupportOurHeroes",
+      "message": "Baked cookies and delivered them to local frontline workers to brighten their day. Their hard work and dedication inspire me every day. 🍪💙 #SupportOurHeroes",
       "topic": "Wholesome",
       "date": "2024-02-16",
       "userAddress": "0xCookieMonster",
@@ -105,7 +105,7 @@ const examplePosts = [
       "imageUrl": "https://media0.giphy.com/media/3orieRlHJOwAaBrbzy/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
     },
       {
-        "content": "Finally hit my goal of 100 pushups in one go! 🏋️‍♂️ Three months of dedication and early mornings. Remember, it's not about the goal, but who you become along the way. #NoExcuses",
+        "message": "Finally hit my goal of 100 pushups in one go! 🏋️‍♂️ Three months of dedication and early mornings. Remember, it's not about the goal, but who you become along the way. #NoExcuses",
         "topic": "Milestones",
         "date": "2024-02-15",
         "userAddress": "0xFitnessFreak",
@@ -114,7 +114,7 @@ const examplePosts = [
         "imageUrl": "https://media0.giphy.com/media/3o7TKPdUkkbCAVqWk0/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
       },
       {
-        "content": "Stood at the top of Mount Everest this morning, feeling on top of the world. 🏔 Every step was a battle, but the view from the summit was worth every challenge. #DreamBig",
+        "message": "Stood at the top of Mount Everest this morning, feeling on top of the world. 🏔 Every step was a battle, but the view from the summit was worth every challenge. #DreamBig",
         "topic": "Milestones",
         "date": "2024-02-14",
         "userAddress": "0xAdventurer",
@@ -123,7 +123,7 @@ const examplePosts = [
         "imageUrl": "https://media0.giphy.com/media/3oEduV4SOS9mmmIOkw/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
       },
       {
-        "content": "Ran my first marathon today in honor of my mom, a cancer survivor. 🏃‍♂️💖 Every mile was for those fighting the battle. Together, we can beat cancer. #RunForACause",
+        "message": "Ran my first marathon today in honor of my mom, a cancer survivor. 🏃‍♂️💖 Every mile was for those fighting the battle. Together, we can beat cancer. #RunForACause",
         "topic": "Milestones",
         "date": "2024-02-13",
         "userAddress": "0xMarathoner",
@@ -132,7 +132,7 @@ const examplePosts = [
         "imageUrl": "https://media0.giphy.com/media/l1J9u3TZfpmeDLkD6/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
       },
       {
-        "content": "100 days of coding challenge completed! Went from zero to developing my first app. The journey has just begun. #CodeNewbie to #CodeNinja 🖥💪",
+        "message": "100 days of coding challenge completed! Went from zero to developing my first app. The journey has just begun. #CodeNewbie to #CodeNinja 🖥💪",
         "topic": "Milestones",
         "date": "2024-02-12",
         "userAddress": "0xCodeWarrior",
@@ -141,7 +141,7 @@ const examplePosts = [
         "imageUrl": "https://media0.giphy.com/media/QHE5gWI0QjqF2/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
       },
       {
-        "content": "Transformed an empty lot into a community garden, feeding dozens of families. 🌱🍅 It started as a small project but turned into a neighborhood mission. #GreenThumbCommunity",
+        "message": "Transformed an empty lot into a community garden, feeding dozens of families. 🌱🍅 It started as a small project but turned into a neighborhood mission. #GreenThumbCommunity",
         "topic": "Milestones",
         "date": "2024-02-11",
         "userAddress": "0xUrbanGardener",
@@ -150,7 +150,7 @@ const examplePosts = [
         "imageUrl": "https://media0.giphy.com/media/3oz8xAFtqoOUUrsh7W/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&rid=200w.gif&ct=g"
       },
           {
-              "content": "That Edison guy is kinda cute, I won't lie. Saw him debugging like a pro. #TechCrush",
+              "message": "That Edison guy is kinda cute, I won't lie. Saw him debugging like a pro. #TechCrush",
               "topic": "Starknet",
               "date": "2024-02-24",
               "userAddress": "0xSecretAdmirer",
@@ -159,7 +159,7 @@ const examplePosts = [
               "imageUrl": "https://media4.giphy.com/media/l41lUJ1YoZB1lHVPG/giphy.gif"
           },
           {
-              "content": "Shoutout to Pierre, literally the only reason my Cairo smart contract works. Man's a wizard! #CairoHero",
+              "message": "Shoutout to Pierre, literally the only reason my Cairo smart contract works. Man's a wizard! #CairoHero",
               "topic": "Starknet",
               "date": "2024-02-24",
               "userAddress": "0xGratefulDev",
@@ -168,7 +168,7 @@ const examplePosts = [
               "imageUrl": "https://media1.giphy.com/media/3ohs4Bkcs4eKd51dqo/giphy.gif"
           },
           {
-              "content": "Denver transit is free for anyone under 19!! Great way to explore the city on a budget. #TravelHack",
+              "message": "Denver transit is free for anyone under 19!! Great way to explore the city on a budget. #TravelHack",
               "topic": "Starknet",
               "date": "2024-02-23",
               "userAddress": "0xExplorer",
@@ -177,7 +177,7 @@ const examplePosts = [
               "imageUrl": "https://media2.giphy.com/media/QMHoU66sBXqqLqYvGO/giphy.gif"
           },
           {
-              "content": "There's a train from the airport to Union Station for $10 so you don't have to buy an expensive Uber. #SmartTravel",
+              "message": "There's a train from the airport to Union Station for $10 so you don't have to buy an expensive Uber. #SmartTravel",
               "topic": "Starknet",
               "date": "2024-02-23",
               "userAddress": "0xSavvyTraveler",
@@ -186,7 +186,7 @@ const examplePosts = [
               "imageUrl": "https://media3.giphy.com/media/l0Iy5fjHyedk9aDGU/giphy.gif"
           },
           {
-              "content": "There's a free mall ride that takes you from Union to the hotel. Handy for last-minute shopping or just getting around. #FreeRide",
+              "message": "There's a free mall ride that takes you from Union to the hotel. Handy for last-minute shopping or just getting around. #FreeRide",
               "topic": "Starknet",
               "date": "2024-02-24",
               "userAddress": "0xUrbanNavigator",
