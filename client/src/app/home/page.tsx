@@ -307,6 +307,8 @@ const HomePage = () => {
       setPostContent('')
       setLoading(false)
 
+      await fetchFeedData()
+
 
 
     } else {
@@ -342,6 +344,10 @@ const HomePage = () => {
       
   
       setPosts(transformedPosts);
+
+
+
+
     } else {
       window.alert("Not connected to Starknet");
     }
@@ -420,7 +426,7 @@ const HomePage = () => {
         walletAddress={post.userAddress}
         comments={0} // Assuming no comments field; provide actual data if available.
         likes={post.likes.toString()}
-        imageUrl="" // Assuming no imageUrl; provide actual data if available.
+        imageUrl={post.imageUrl ?? ""}
       />
     ))
 }
