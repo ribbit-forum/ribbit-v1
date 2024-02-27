@@ -14,6 +14,8 @@ import Trending from "../components/Trending";
 import { useToast } from "@chakra-ui/react";
 import { NFTStorage, File } from "nft.storage";
 import { useDropzone } from "react-dropzone";
+import { TextLogo } from "../Icons/Icons"
+import { DiEnvato } from "react-icons/di";
 
 const examplePosts = [
   {
@@ -501,12 +503,15 @@ const HomePage = () => {
     <Box className="flex h-screen bg-gray-100 overflow-auto">
       <Sidebar posts={posts} setCurrentTopic={setCurrentTopic} />
       <Box className="flex-grow flex flex-col gap-5 px-10 pt-2 overflow-auto">
-        <Text
+        {/* <Text
           className="text-5xl font-bold mt-8 text-left color"
           textColor={"#EC796B"}
         >
           RIBBIT
-        </Text>
+        </Text> */}
+        <div className="mt-8">
+          <TextLogo />
+        </div>
         <GoodEvening name={address as string} />
         <form
           onSubmit={handleSubmit}

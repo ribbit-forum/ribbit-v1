@@ -20,6 +20,8 @@ import React, { useEffect, useState } from "react";
 import { Input } from 'antd';
 import {
   RibbitLogo,
+  ChevronRight,
+  ChevronLeft
 } from "../Icons/Icons";
 
 const { Search } = Input;
@@ -32,7 +34,7 @@ type SidebarProps = {
 
 const Sidebar = ({ posts, setCurrentTopic }: SidebarProps) => {
 
-  
+
   const topicEmojiMap: Record<string, string> = {
     "All": "🐸",
     "Lifehacks": "🥷",
@@ -59,7 +61,7 @@ const Sidebar = ({ posts, setCurrentTopic }: SidebarProps) => {
       setTopics([...topics, value]);
       console.log("On Add Topic: ", value);
     }
-};
+  };
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -67,18 +69,30 @@ const Sidebar = ({ posts, setCurrentTopic }: SidebarProps) => {
   return (
     <>
       <IconButton
-        icon={isSidebarOpen ? <FiChevronLeft size={24} /> : <FiChevronRight size={24} />}
+        icon={
+          <Box
+            borderRadius="full" // Makes the Box circular
+            bg="FFFFFF" // Uses the current text color for the background, adjust as needed
+            display="inline-flex" // Ensures the Box does not stretch
+            alignItems="center" // Centers the icon vertically
+            justifyContent="center" // Centers the icon horizontally
+            p={1} // Adjust padding to control the size of the circle around the icon
+          >
+            {isSidebarOpen ? <ChevronLeft size={24} /> : <ChevronRight size={24} />}
+          </Box>
+        }
         bg="white"
         borderRadius="full"
         variant="outline"
         onClick={handleSidebarToggle}
         position="fixed"
         bottom="5%"
-        left="5%"
+        left={isSidebarOpen ? "314px" : "0px"}
         top="95%"
         transform="translateY(-50%)"
         color={'black'}
-        zIndex="999" aria-label={""}/>
+        zIndex="999"
+        aria-label={""} />
 
       {isSidebarOpen && (
         <Box
@@ -95,29 +109,29 @@ const Sidebar = ({ posts, setCurrentTopic }: SidebarProps) => {
           <Flex direction={"row"} gap={"5px"}>
           </Flex>
           <Flex direction={"column"} justifyContent={"space-around"} alignItems="center">
-            <div style={{marginLeft: "100px", marginRight: "100px", marginTop: "30px"}}><RibbitLogo /></div>
-          
-            <Flex direction={"column"} gap={"30px"} mt={"40px"} fontSize={"18px"}>
+            <div style={{ marginLeft: "80px", marginRight: "80px", marginTop: "30px" }}><RibbitLogo /></div>
+
+            <Flex direction={"column"} gap={"10px"} mt={"1px"} fontSize={"18px"}>
               <Flex direction={"row"}>
-              <Search
-                placeholder="Add Topic"
-                allowClear
-                enterButton="➕"
-                size={"middle"}
-                onSearch={onAddTopic}
-              />
+                <Search
+                  placeholder="Add Lily Pad"
+                  allowClear
+                  enterButton="➕"
+                  size={"middle"}
+                  onSearch={onAddTopic}
+                />
               </Flex>
+              <Text style={{ marginTop: "24px" }}>🐸 Your Lily Pads: </Text>
               <Flex direction={"row"}>
-              <Search
-                placeholder="Search Topic"
-                allowClear
-                enterButton="🔍"
-                size="large"
-                onSearch={onSearch}
-              />
+                <Search
+                  placeholder="Search Lily Pad"
+                  allowClear
+                  enterButton="🔍"
+                  size="middle"
+                  onSearch={onSearch}
+                />
               </Flex>
               {searchFilter !== "" && <Text>Current Search: {searchFilter}</Text>}
-              <Text>🐸 Your Subribbits: </Text>
               <div style={{ maxHeight: "400px", overflowY: "auto" }}>
                 {topics
                   .filter(topic => searchFilter === "" || topic.toLowerCase().includes(searchFilter.toLowerCase()))
@@ -127,17 +141,21 @@ const Sidebar = ({ posts, setCurrentTopic }: SidebarProps) => {
                       direction="row"
                       onClick={() => setCurrentTopic(topic)}
                       marginBottom="10px"
-                      style={{ border: "1px solid gray", padding: "5px", borderRadius: "15px", cursor: "pointer"}}
+                      style={{ padding: "5px", borderRadius: "8px", cursor: "pointer" }}
+                      _hover={{ backgroundColor: "#F2F2F2" }}
                     >
-                      <Text style={{ marginLeft: "10px" }}>
+
+                      <Text
+                        style={{ marginLeft: "10px" }}
+                      >
                         {topic in topicEmojiMap ? topicEmojiMap[topic] : "🐸"} {topic}
                       </Text>
                     </Flex>
                   ))}
               </div>
-              
+
             </Flex>
-            
+
           </Flex>
         </Box>
       )}
