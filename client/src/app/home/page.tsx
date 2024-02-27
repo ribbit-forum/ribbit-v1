@@ -279,8 +279,8 @@ const HomePage = () => {
   const toast = useToast();
   const [finality, setFinality] = useState<string>("");
   const [ipfsUploaded, setIpfsUploaded] = useState<boolean>(false);
-  const[firstHalfCID, setFirstCID] = useState<string>('')
-  const[secondHalfCID, setSecondCID] = useState<string>('')
+  const [firstHalfCID, setFirstCID] = useState<string>('')
+  const [secondHalfCID, setSecondCID] = useState<string>('')
 
 
   const [theConnection, setConnection] =
@@ -297,20 +297,20 @@ const HomePage = () => {
       // Append the file to the FormData instance. The 'file' field name should match what the API expects.
       formData.append('file', file, "ribbit.png");
       console.log('uploading..');
-      
+
       // Make the HTTP request to the NFT.Storage API
       const response = await fetch("https://api.nft.storage/upload", {
-        method: "POST", 
+        method: "POST",
         headers: {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_NFT_API_KEY}`,
         },
         body: formData,
       });
-  
+
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-  
+
       const data = await response.json();
       console.log("Uploaded to NFT.Storage:", data);
       const cid = data.value.cid;
@@ -322,15 +322,15 @@ const HomePage = () => {
       console.error("Upload error:", error);
     }
   }
-  
+
 
   const onDrop = useCallback(async (acceptedFiles: any[]) => {
     // Assuming only one file is accepted for simplicity
     const file = acceptedFiles[0];
     await uploadToNFTStorage(file);
   }, []);
-  
-  
+
+
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -360,88 +360,88 @@ const HomePage = () => {
       }
 
 
-        const deployedStarknetContract =
-          "0x02336c8825474568ea5d4e28b91acb4bfbaa7cc86b7e7208ffb22704ff375cd5";
+      const deployedStarknetContract =
+        "0x02336c8825474568ea5d4e28b91acb4bfbaa7cc86b7e7208ffb22704ff375cd5";
 
-        const starknetABI = await connection.provider.getClassAt(
-          deployedStarknetContract
-        );
+      const starknetABI = await connection.provider.getClassAt(
+        deployedStarknetContract
+      );
 
-        if (!starknetABI) {
-          throw new Error("ABI not found.");
-        }
+      if (!starknetABI) {
+        throw new Error("ABI not found.");
+      }
 
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = now.getMonth() + 1;
-        const day = now.getDate();
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const day = now.getDate();
 
-        const monthPadded = String(month).padStart(2, "0");
-        const dayPadded = String(day).padStart(2, "0");
+      const monthPadded = String(month).padStart(2, "0");
+      const dayPadded = String(day).padStart(2, "0");
 
-        const fullDate = `${year}${monthPadded}${dayPadded}`;
+      const fullDate = `${year}${monthPadded}${dayPadded}`;
 
-        const StarknetContract = new Contract(
-          starknetABI.abi,
-          deployedStarknetContract,
-          connection.account
-        );
-        StarknetContract.connect(connection.account);
-        
-        if(imageUrlInput != ""){
-          const shortUrl = await shortenURL(imageUrlInput);
-          console.log(shortUrl);
-        }
+      const StarknetContract = new Contract(
+        starknetABI.abi,
+        deployedStarknetContract,
+        connection.account
+      );
+      StarknetContract.connect(connection.account);
 
-        console.log(            
+      if (imageUrlInput != "") {
+        const shortUrl = await shortenURL(imageUrlInput);
+        console.log(shortUrl);
+      }
+
+      console.log(
+        connection.selectedAddress,
+        postContent,
+        "",
+        "",
+        fullDate,
+        currentTopic);
+
+
+      let myCall;
+      if (ipfsUploaded) {
+        myCall = StarknetContract.populate("addPost", [
           connection.selectedAddress,
           postContent,
-          "",
-          "",
+          firstHalfCID,
+          secondHalfCID,
           fullDate,
-          currentTopic);
-        
-
-        let myCall;
-        if(ipfsUploaded){
-          myCall = StarknetContract.populate("addPost", [
-            connection.selectedAddress,
-            postContent,
-            firstHalfCID,
-            secondHalfCID,
-            fullDate,
-            currentTopic,
-          ]);
-        } else{
-            myCall = StarknetContract.populate("addPost", [
-            connection.selectedAddress,
-            postContent,
-            "0",
-            "0",
-            fullDate,
-            currentTopic,
-          ]);
-        }
+          currentTopic,
+        ]);
+      } else {
+        myCall = StarknetContract.populate("addPost", [
+          connection.selectedAddress,
+          postContent,
+          "0",
+          "0",
+          fullDate,
+          currentTopic,
+        ]);
+      }
 
 
 
-        const res = await StarknetContract.addPost(myCall.calldata);
-        console.log("response", res);
+      const res = await StarknetContract.addPost(myCall.calldata);
+      console.log("response", res);
 
-        const receipt = await connection.provider.waitForTransaction(
-          res.transaction_hash
-        );
+      const receipt = await connection.provider.waitForTransaction(
+        res.transaction_hash
+      );
 
-        setFinality(receipt.finality_status);
+      setFinality(receipt.finality_status);
 
-        window.alert(
-          `Your transacation has went through ${res.transaction_hash}`
-        );
-        setPostContent("");
-        setLoading(false);
+      window.alert(
+        `Your transacation has went through ${res.transaction_hash}`
+      );
+      setPostContent("");
+      setLoading(false);
 
-        await fetchFeedData();
- 
+      await fetchFeedData();
+
     } else {
       window.alert("Not connected to Starknet");
     }
@@ -469,14 +469,14 @@ const HomePage = () => {
       const transformedPosts: any[] = (postsResponse as any[]).map((post) => {
         let imageUrl;
         console.log(post.imageUrl2);
-        
-        if(shortString.decodeShortString(post.imageUrl2) != "0"){
+
+        if (shortString.decodeShortString(post.imageUrl2) != "0") {
           console.log("has image");
-          const imageUrlString = shortString.decodeShortString(post.imageUrl1)+shortString.decodeShortString(post.imageUrl2)
+          const imageUrlString = shortString.decodeShortString(post.imageUrl1) + shortString.decodeShortString(post.imageUrl2)
           imageUrl = `https://${imageUrlString}.ipfs.nftstorage.link/ribbit.png`
         }
 
-        
+
         return {
           deleted: post.deleted,
           likes: Number(post.likes),
@@ -503,12 +503,6 @@ const HomePage = () => {
     <Box className="flex h-screen bg-gray-100 overflow-auto">
       <Sidebar posts={posts} setCurrentTopic={setCurrentTopic} />
       <Box className="flex-grow flex flex-col gap-5 px-10 pt-2 overflow-auto">
-        {/* <Text
-          className="text-5xl font-bold mt-8 text-left color"
-          textColor={"#EC796B"}
-        >
-          RIBBIT
-        </Text> */}
         <div className="mt-8">
           <TextLogo />
         </div>
@@ -587,26 +581,29 @@ const HomePage = () => {
             </div>
           </Flex>
 
-          <div className="flex items-center justify-between flex-wrap text-gray-800">
-            <div className="flex-1 flex justify-center items-center space-x-4">
-              <p>Topic: {currentTopic}</p>
-              <button
-                onClick={() => setCurrentTopic("All")}
-                className="px-4 py-2 text-sm text-blue-600 bg-blue-100 rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                Reset Topic
-              </button>
+          <div className="flex items-center justify-between flex-wrap text-gray-800 gap-4">
+            <div className="flex flex-wrap gap-4">
+              <div className="flex justify-left items-center space-x-4">
+                <p>Topic: {currentTopic}</p>
+                <button
+                  onClick={() => setCurrentTopic("All")}
+                  className="px-4 py-2 text-sm text-blue-600 bg-blue-100 rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  Reset Topic
+                </button>
+              </div>
+              <div className="flex justify-left items-center space-x-4">
+                <p>Address: {currentAddress}</p>
+                <button
+                  onClick={() => setCurrentAddress("All")}
+                  className="px-4 py-2 text-sm text-blue-600 bg-blue-100 rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  Reset Address
+                </button>
+              </div>
             </div>
-            <div className="flex-1 flex justify-center items-center space-x-4">
-              <p>Address: {currentAddress}</p>
-              <button
-                onClick={() => setCurrentAddress("All")}
-                className="px-4 py-2 text-sm text-blue-600 bg-blue-100 rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                Reset Address
-              </button>
-            </div>
-            <div className="flex-1 flex justify-center items-center">
+
+            <div className="flex-1 flex justify-end items-center">
               <button
                 onSubmit={handleSubmit}
                 className="px-6 py-3 bg-[#EC796B] hover:bg-[#EC796B] focus:outline-none focus:ring-2 focus:ring-offset-2 text-white rounded-lg font-semibold shadow"
