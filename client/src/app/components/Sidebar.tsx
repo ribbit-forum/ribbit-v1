@@ -118,9 +118,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
                   .filter(topic => searchFilter === "" || topic.toLowerCase().includes(searchFilter.toLowerCase()))
                   .map((topic, index) => (
                     <Flex key={index} direction="row" onClick={() => setCurrentTopic(topic)} marginBottom="10px">
-                      {topic in topicEmojiMap && (
-                        <Text style={{marginLeft: "10px"}}>{topicEmojiMap[topic] + " " + topic}</Text>
-                      )}
+                        <Text style={{marginLeft: "10px"}}>{topic in topicEmojiMap ? topicEmojiMap[topic] : "🐸"} {" " + topic}</Text>
                     </Flex>
                   ))}
               </div>
