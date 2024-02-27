@@ -67,11 +67,14 @@ const Sidebar = ({ posts, setCurrentTopic }: SidebarProps) => {
   return (
     <>
       <IconButton
-        icon={isSidebarOpen ? <FiChevronLeft /> : <FiChevronRight />}
+        icon={isSidebarOpen ? <FiChevronLeft size={24} /> : <FiChevronRight size={24} />}
+        bg="white"
+        borderRadius="full"
+        variant="outline"
         onClick={handleSidebarToggle}
         position="fixed"
         bottom="5%"
-        left={isSidebarOpen ? "48px" : "48px"}
+        left="5%"
         top="95%"
         transform="translateY(-50%)"
         color={'black'}
