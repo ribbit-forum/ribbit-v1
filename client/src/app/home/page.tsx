@@ -1,18 +1,18 @@
 "use client";
 
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Text, Flex } from "@chakra-ui/react";
 import { Contract, RpcProvider } from "starknet";
 import { connect, disconnect } from "starknetkit";
 import { useEffect, useState } from "react";
 
 import { ConnectedStarknetWindowObject } from "starknetkit";
 import CreatePostComponent from "../components/CreatePostComponent";
-import { Flex } from "antd";
+
 import GoodEvening from "../components/GoodEvening";
 import PostCard from "../components/ExploreCards";
 import Sidebar from "../components/Sidebar";
 import Trending from "../components/Trending";
-
+import { useToast } from '@chakra-ui/react'
 const examplePosts = [
   {
     "postId": 1,
@@ -178,16 +178,21 @@ const HomePage = () => {
   const [posts, setPosts] = useState(examplePosts);
   const [currentTopic, setCurrentTopic] = useState<string>("All");
   const [currentAddress, setCurrentAddress] = useState<string>("All");
+  const toast = useToast()
 
 
   const [theConnection, setConnection] =
     useState<ConnectedStarknetWindowObject>();
+
+  
 
   // Function to handle form submission
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
     setLoading(true)
+
+
 
     const connection = await connect();
 
@@ -196,7 +201,22 @@ const HomePage = () => {
       setProvider(connection.account);
       setAddress(connection.selectedAddress);
 
-      const deployedStarknetContract = "0x07bd868e8ba52991fce96af898c529c8bbc011f982a1e49626118050c4b0d0d6";
+
+      if(postContent == ""){
+        toast({
+          title: 'You need to write something!',
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        }
+        )
+
+        window.alert("You need to write something!")
+        setLoading(false)
+        return 
+
+      }
+      const deployedStarknetContract = "0x007c81cd5cea645ac13f859ccdbb26c7de4df523ecdf7fef12d978c24cfa56e0";
 
       const starknetABI = await connection.provider.getClassAt(deployedStarknetContract);
 
@@ -205,37 +225,37 @@ const HomePage = () => {
         throw new Error("ABI not found.");
       }
 
+      
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1; 
+      const day = now.getDate();
+
+      const monthPadded = String(month).padStart(2, '0');
+      const dayPadded = String(day).padStart(2, '0');
+
+
+      const fullDate = `${year}${monthPadded}${dayPadded}`;
+
       const StarknetContract = new Contract(starknetABI.abi, deployedStarknetContract, connection.account);
       StarknetContract.connect(connection.account);
 
-      const myCall = StarknetContract.populate("increase_balance", [10, 30]);
-      const res = await StarknetContract.increase_balance(myCall.calldata);
-      await connection.provider.waitForTransaction(res.transaction_hash);
+      console.log(connection.selectedAddress, postContent, fullDate, currentTopic);
 
+      const myCall = StarknetContract.populate("addPost", [connection.selectedAddress, postContent, fullDate,currentTopic ]);
+
+      const res = await StarknetContract.addPost(myCall.calldata);
+      console.log("response",res);
+      
+      const receipt = await connection.provider.waitForTransaction(res.transaction_hash);
+      
 
       window.alert(`Your transacation has went through ${res.transaction_hash}`)
       setPostContent('')
+      setLoading(false)
 
-      try {
-        console.log(postContent);
-        let formData = new FormData();
-        formData.append('content', postContent);
-        formData.append('topic', '');
-        formData.append('user_wallet_address', address as string);
-        // Post data to the "/createPost" endpoint
-        const response = await fetch("http://127.0.0.1:5000/createPost", {
-          method: "POST",
-          body: formData,
-        });
 
-        const data = await response.json();
-        // Handle success response
-        console.log(data);
-        setLoading(false)
-      } catch (error) {
-        // Handle errors
-        console.error("Error posting the content:", error);
-      }
+
     } else {
       window.alert("Not connected to Starknet");
     }
@@ -287,7 +307,7 @@ const HomePage = () => {
             placeholder="What do you want to talk about today?"
             className="w-full px-4 py-8 border border-[#919191] rounded-xl focus:outline-none bg-[#EFEFEF] text-[#919191]"
           />
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between text-black">
             <p>Topic: {currentTopic}</p>
             <Button onClick={() => {
               setCurrentTopic("All");
@@ -300,7 +320,7 @@ const HomePage = () => {
               <div className="flex items-center space-x-4">
                 <button
                   onSubmit={handleSubmit}
-                  className="px-12 py-3 bg-[#4D4DB2] text-white rounded-2xl font-bold shadow-lg"
+                  className="px-12 py-3 bg-[#EC796B] text-white rounded-2xl font-bold shadow-lg"
                 >
                   {address ? (loading ? "loading" : "Create Post") : "Connect to Post"}
                 </button>
