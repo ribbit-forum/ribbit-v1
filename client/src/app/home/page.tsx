@@ -224,6 +224,8 @@ const examplePosts = [
 const HomePage = () => {
   // State to store the input value
   const [postContent, setPostContent] = useState("");
+  const [imageUrlInput, setImageUrlInput] = useState("");
+
   const [address, setAddress] = useState<string | undefined>(undefined);
   const [provider, setProvider] = useState<any | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>()
@@ -252,7 +254,6 @@ const HomePage = () => {
       setConnection(connection);
       setProvider(connection.account);
       setAddress(connection.selectedAddress);
-
 
       if(postContent == ""){
         toast({
@@ -356,6 +357,13 @@ const HomePage = () => {
             onChange={(e) => setPostContent(e.target.value)}
             placeholder="What do you want to talk about today?"
             className="w-full px-4 py-8 border border-[#919191] rounded-xl focus:outline-none bg-[#EFEFEF] text-[#919191]"
+          />
+          <input
+            type="text"
+            value={imageUrlInput}
+            onChange={(e) => setImageUrlInput(e.target.value)}
+            placeholder="Image URL"
+            className="w-full px-4 py-4 border border-[#919191] rounded-xl focus:outline-none bg-[#EFEFEF] text-[#919191]"
           />
             <div className="flex items-center justify-between flex-wrap text-black">
             <p>Topic: {currentTopic}</p>
