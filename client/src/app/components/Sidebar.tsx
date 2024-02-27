@@ -22,19 +22,6 @@ import {
   RibbitLogo,
 } from "../Icons/Icons";
 
-const topics = [
-  "Dad Jokes",
-  "Tech Puns",
-  "Puns",
-  "Tech Life",
-  "Shower Thoughts",
-  "Space Dogs",
-  "Food Jokes",
-  "Weather Puns",
-  "Gen Z Trends",
-  "Late Night Thoughts"
-];
-
 const { Search } = Input;
 
 type SidebarProps = {
@@ -48,6 +35,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
     "Lifehacks": "🥷",
     "Wholesome": "🐱",
     "Milestones": "💪",
+    "Starknet": "🌐",
   };
 
   const [topics, setTopics] = useState([
@@ -55,6 +43,7 @@ const Sidebar = ({ setCurrentTopic }: SidebarProps) => {
     "Lifehacks",
     "Wholesome",
     "Milestones",
+    "Starknet",
   ]);
 
   const [searchFilter, setSearchFilter] = useState(""); // ["topic1", "topic2"
