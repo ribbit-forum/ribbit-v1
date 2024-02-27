@@ -25,6 +25,10 @@ const PostCard: React.FC<PostCardProps> = ({
   likes,
   imageUrl
 }) => {
+  if (imageUrl === "") {
+    imageUrl = "https://media0.giphy.com/media/unQ3IJU2RG7DO/200w.gif?cid=82a1493b3kiz49wjv8ue03z7ks28dhl78envfu435bged6ns&ep=v1_gifs_related&rid=200w.gif&ct=g";
+
+  }
   return (
     <div className="max-w-sm mx-auto rounded overflow-hidden shadow-lg bg-white p-6 text-black">
       <div className="text-sm mb-2">
