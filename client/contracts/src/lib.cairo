@@ -4,12 +4,12 @@ use starknet::ContractAddress;
 struct Post {
     userAddress: ContractAddress,
     message: felt252,
-    imageUrl: felt252,
+    imageUrl1: felt252,
+    imageUrl2: felt252,
     timestamp: u32,
     topic: felt252,
     likes: u32,
     tokensTipped: u128,
-    //messages: LegacyMap::<u128, felt252>,
     deleted: bool,
 }
 
@@ -18,7 +18,7 @@ struct Post {
 #[starknet::interface]
 trait ISimpleStorage<TContractState> {
     fn getPostLength(self: @TContractState) -> u128;
-    fn addPost(ref self: TContractState, userAddress: ContractAddress, message: felt252, imageUrl: felt252, timestamp: u32, topic: felt252);
+    fn addPost(ref self: TContractState, userAddress: ContractAddress, message: felt252, imageUrl1: felt252,imageUrl2: felt252, timestamp: u32, topic: felt252);
     fn getPost(self: @TContractState, index: u128) -> Post;
     fn getAllPosts(self: @TContractState) -> Array<Post>;
     fn addLike(ref self: TContractState, index: u128);
@@ -44,13 +44,14 @@ mod SimpleStorage {
         fn getPostLength(self: @ContractState) -> u128 {
             self.postLength.read()
         }
-        fn addPost(ref self: ContractState, userAddress: ContractAddress, message: felt252, imageUrl: felt252, timestamp: u32, topic: felt252) {
+        fn addPost(ref self: ContractState, userAddress: ContractAddress, message: felt252, imageUrl1: felt252,imageUrl2: felt252, timestamp: u32, topic: felt252) {
             //let mut messageArray = ArrayTrait::<felt252>::new();
 
             let _new_post = Post {
                 userAddress: userAddress,
                 message: message,
-                imageUrl: imageUrl,
+                imageUrl1: imageUrl1,
+                imageUrl2: imageUrl2,
                 timestamp: timestamp,
                 topic: topic,
                 likes: 0,
@@ -70,7 +71,8 @@ mod SimpleStorage {
             let likedPost = Post {
                 userAddress: post.userAddress,
                 message: post.message,
-				imageUrl: post.imageUrl,
+				imageUrl1: post.imageUrl1,
+				imageUrl2: post.imageUrl2,
                 timestamp: post.timestamp,
                 topic: post.topic,
                 likes: post.likes,
@@ -88,7 +90,8 @@ mod SimpleStorage {
             let likedPost = Post {
                 userAddress: post.userAddress,
                 message: post.message,
-				imageUrl: post.imageUrl,
+				imageUrl1: post.imageUrl1,
+				imageUrl2: post.imageUrl2,
                 timestamp: post.timestamp,
                 topic: post.topic,
                 likes: post.likes + 1,
