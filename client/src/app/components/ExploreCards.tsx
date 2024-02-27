@@ -29,6 +29,10 @@ const PostCard: React.FC<PostCardProps> = ({
   status = "Accepted on L2"
 }) => {
   const finality = "Accepted on L2"
+  if (imageUrl === "") {
+    imageUrl = "http://tinyurl.com/asjks12";
+
+  }
   return (
     <div className="max-w-sm mx-auto rounded overflow-hidden shadow-lg bg-white p-6 text-black">
       <div className="text-sm mb-2">
