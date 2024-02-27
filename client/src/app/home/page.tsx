@@ -357,7 +357,7 @@ const HomePage = () => {
             placeholder="What do you want to talk about today?"
             className="w-full px-4 py-8 border border-[#919191] rounded-xl focus:outline-none bg-[#EFEFEF] text-[#919191]"
           />
-          <div className="flex items-center justify-between text-black">
+            <div className="flex items-center justify-between flex-wrap text-black">
             <p>Topic: {currentTopic}</p>
             <Button onClick={() => {
               setCurrentTopic("All");
