@@ -23,6 +23,3 @@ Despite these obstacles, we persevered and worked collaboratively to find soluti
 
 ## What We Learned 📚
 We are proud to have learned how to work in different roles under time pressure, and pushing through difficult situations together. Despite the hiccups along the way, this experience has proven to be both valuable and fulfilling. This has been a particularly rewarding opportunity to apply our skills, within tight timelines. Confronting and overcoming challenges together has not only strengthened our team but also allowed us to glean meaningful insights. We are proud of our swift progress and accomplishments, considering our limited prior experience with hackathons.
-
-## What's Next for Ribbit 🔮
-We are excited to see what the future of Ribbit may hold. We hope to improve the user experience by implementing mutimedia support to remove restrictions in how our users may seek to express their thoughts. We also would like to implement tipping using FLOW, to allow users to securely and directly show support for the communities that they are apart of.
